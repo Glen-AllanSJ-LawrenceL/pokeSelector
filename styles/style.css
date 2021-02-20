@@ -221,21 +221,99 @@ textarea {
   overflow: hidden;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 h1 {
   font-size: 12vw;
+  font-family: 'Cinzel', serif;
   width: 50%;
   margin: 20px auto 20px;
-  text-indent: -70px;
+  text-indent: -18%;
   color: #ff9a00;
-  text-shadow: -5px 5px 0 #ff165d, -10px 10px 0 #3ec1d3;
+  text-shadow: -2px 2px 1px #ff165d, -4px 4px 1px #3ec1d3, -6px 6px 1px #007965;
+  font-weight: 700;
+  -webkit-transition: scale 0.5s cubic-bezier(0.48, 0.43, 0.53, 1.46), text-shadow 0.5s cubic-bezier(0.48, 0.43, 0.53, 1.46);
+  transition: scale 0.5s cubic-bezier(0.48, 0.43, 0.53, 1.46), text-shadow 0.5s cubic-bezier(0.48, 0.43, 0.53, 1.46);
+}
+
+h1:hover {
+  scale: 1.05;
+  text-shadow: -4px 4px 1px #ff165d, -8px 8px 1px #3ec1d3, -12px 12px 1px #007965;
 }
 
 h1 span {
-  margin-left: 30px;
+  margin-left: 0;
 }
 
 main {
   border: 2px red solid;
+  min-height: 500px;
+}
+
+footer {
+  height: 40px;
+  background-color: #007965;
+  font-size: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:visited {
+  color: #f6f7d7;
+}
+
+form {
+  margin: 40px auto;
+}
+
+form fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-right: 10px;
+}
+
+select, button {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+  margin: 0 30px;
+  background-color: #f6f7d7;
+  padding: 5px 20px;
+  border: 3px solid #3ec1d3;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+select:hover, button:hover {
+  background-color: #00af91;
+  border: 3px solid #ff9a00;
+  color: white;
 }
 
 html {
@@ -243,5 +321,8 @@ html {
 }
 
 body {
-  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  font-family: 'Poppins', sans-serif;
+  color: #f6f7d7;
+  background-color: #f6f7d7;
 }

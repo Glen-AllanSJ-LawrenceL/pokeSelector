@@ -2,12 +2,17 @@
 @import 'header';
 @import 'main';
 @import 'footer';
+@import 'form';
 
 // font-family: 'Cinzel', serif;
+// font-family: 'Poppins', sans-serif;
 html {
    font-size: 62.5%;
 }
 
 body {
-   font-family: 'Cinzel', serif;
+   font-size: 1.6rem;
+   font-family: 'Poppins', sans-serif;
+   color: #f6f7d7;
+   background-color: #f6f7d7;
 }
