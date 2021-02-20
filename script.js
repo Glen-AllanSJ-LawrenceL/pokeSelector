@@ -8,16 +8,43 @@
 
 
 
-// Create and app object (pokemonSelector)
+// Create and app object (pokeSelector) for namespace
+const pokeSelector = {};
 
-// initialize data from the following:
+
+// Obtain Pokemon data by calling the API and saving the relevant information.
 // - pokeapi.io is the API we will be using for this Pokemon selector.
-// - apikey is not required for data to be obtained.
-
+// - apikey is not required for data to be obtained as per documentation: https://pokeapi.co/docs/v2.
+pokeSelector.apiUrl = "https://pokeapi.co/api/v2/";
 
 
 // Create a method () to make API calls when the user has provided an input which is their desired pokemon type. When the API call is successful, the application will display the result by appending or changing text content to the resulting HTML tag which is likely going to be a <p> and/or <h>.
 
-// Create an init method to begin loading of the application.
+
+
+// Using the built-in fetch API to make a request to the PokeAPI endpoint
+// This is used to obtain the API data and then parse it into JSON format so that it is useable for the application. 
+fetch()
+    .then((response) => {
+        // console.log(response);
+        return response.json();
+    })
+    .then((jsonResponse) => {
+            console.log(jsonResponse);
+
+            // Pass the data into the displayPhotos method
+            // AKA call the displayPhotos within getPhotos
+            // galleryApp.displayPhotos(jsonResponse);
+    })
+
+
+
 // - call the above method for a random pokemon to be displayed to give the user an idea of how the user's desired pokemon will be displayed 
-// add event listeners for gallery portion so that user can cycle or move to another pokemon with the resulting picture and data.  
+// add event listeners for gallery portion so that user can cycle or move to another pokemon with the resulting picture and data.
+
+// Initialization method for pokeSelector application
+pokeSelector.init = () => {
+
+}
+//Call the init method to start the app when page loads:
+pokeSelector.init();
