@@ -17,57 +17,90 @@ const pokeSelector = {};
 // - apikey is not required for data to be obtained as per documentation: https://pokeapi.co/docs/v2.
 pokeSelector.apiUrl = "https://pokeapi.co/api/v2/pokemon";
 
-// Method used to get sprite data from pokeAPI
-pokeSelector.getPokeData = () => {
-    // Use the URL Constructor to specify the parameters we wish to include in our API endpoint. 
-    // NEED URL Constructor with Vanilla JavaScript vs. jQuery which uses the ajax function.
-    // Additional query parameters included to compensate for the default 20 results per page limit noramlly imposed by the API.
-    const url = new URL(pokeSelector.apiUrl);
-    url.search = new URLSearchParams({
-        offset: 0,
-        limit: 1118,
-    })
+// getPokeData when user submits selection
+const button = document.querySelector('button');
+const typeInput = document.querySelector('option');
 
-    // Using the built-in fetch API to make a request to the PokeAPI endpoint
-    // This is used to obtain the API data and then parse it into JSON format so that it is useable for the application. 
-    
-    // const promisesArray = [];
-    // for (let i = 0; i <=50; i++){
-    //     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-    //     promisesArray.push()
-    fetch(url)
-        .then((response) => {
-            return response.json();
+button.addEventListener('submit', (event) => {
+    event.preventDefault();
+    // Method used to get sprite data from pokeAPI
+    pokeSelector.getPokeData = () => {
+        // Use the URL Constructor to specify the parameters we wish to include in our API endpoint. 
+        // NEED URL Constructor with Vanilla JavaScript vs. jQuery which uses the ajax function.
+        // Additional query parameters included to compensate for the default 20 results per page limit noramlly imposed by the API.
+        const url = new URL(pokeSelector.apiUrl);
+        url.search = new URLSearchParams({
+            offset: 0,
+            limit: 1118,
         })
-        .then((jsonResponse) => {
-            console.log(jsonResponse);
-            const pokemonName = jsonResponse.results[7].name;
-            
 
+        // Using the built-in fetch API to make a request to the PokeAPI endpoint
+        // This is used to obtain the API data and then parse it into JSON format so that it is useable for the application. 
+        
+        // const promisesArray = [];
+        // for (let i = 0; i <=50; i++){
+        //     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        //     promisesArray.push()
+
+
+        fetch(url)
+            .then((response) => {
+                return response.json();
+            })
+            .then((jsonResponse) => {
+                console.log(jsonResponse);
+                pokemonName = jsonResponse.results[7].name;
+                showName();
+                // new fetch
+                fetch(jsonResponse.results[7].url) 
+                .then((data) => {
+                    return data.json();
+                }).then((pokeData) => {
+                    console.log(pokeData);
+                    pokemonSprite = pokeData.sprites.front_default;
+                    showImages(pokemonSprite);
+                })
+                // new fetch end
+
+                
+                
+
+                // Pass the data into the displayPhotos method
+                // AKA call the displayPhotos within getPhotos
+                // galleryApp.displayPhotos(jsonResponse);
+            })
+        
+        // create a variable that will hold the pokemon name
+        let pokemonName;
+        //create a variable that will hold that pokemon sprite
+        let pokemonSprite;
+
+        function showImages(image) {
+            const imageEl = document.querySelector('img');
+            imageEl.src = `${pokemonSprite}`;
+        }
+
+        function showName(name) {
             const paragraphEl = document.querySelector('p');
             paragraphEl.textContent = `${pokemonName}`;
-            
-            
 
-            // Pass the data into the displayPhotos method
-            // AKA call the displayPhotos within getPhotos
-            // galleryApp.displayPhotos(jsonResponse);
-        })
-    
-    // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
-    // jsonResponse.results.forEach(allPokemonInfo){
-    //     fetchNestedPokemonData(allPokemonInfo){
-    //         let nestedApiUrl = url.search;
+        }
+        
+        // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
+        // jsonResponse.results.forEach(allPokemonInfo){
+        //     fetchNestedPokemonData(allPokemonInfo){
+        //         let nestedApiUrl = url.search;
 
-    //         fetch(nestedApiUrl)
-    //             .then(response => response.json())
+        //         fetch(nestedApiUrl)
+        //             .then(response => response.json())
 
-    //             .then((nestedPokemonData) => {
-    //                 console.log(nestedPokemonData);
-    //             })
-    //     }
-    // }    
-}    
+        //             .then((nestedPokemonData) => {
+        //                 console.log(nestedPokemonData);
+        //             })
+        //     }
+        // }    
+    }    
+})
 
 // Create a method () to make API calls when the user has provided an input which is their desired pokemon type. When the API call is successful, the application will display the result by appending or changing text content to the resulting HTML tag which is likely going to be a <p> and/or <h>.
 
