@@ -1,3 +1,9 @@
+@mixin desktopMQ {
+   @media (min-width: 1200px) {
+      @content;
+   }
+}
+
 @mixin laptopMQ {
    @media (max-width: 1000px) {
       @content;

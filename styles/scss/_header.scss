@@ -9,6 +9,10 @@ h1 {
    font-weight: 700;
    transition: scale 0.5s cubic-bezier(.48,.43,.53,1.46), text-shadow 0.5s cubic-bezier(.48,.43,.53,1.46);
 
+   @include desktopMQ {
+      font-size: 14rem;
+   }
+
    &:hover {
       scale: 1.05;
       text-shadow: -4px 4px 1px #ff165d, -8px 8px 1px #3ec1d3, -12px 12px 1px #007965

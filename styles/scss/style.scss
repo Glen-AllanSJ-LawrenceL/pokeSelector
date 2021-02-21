@@ -17,4 +17,10 @@ body {
    font-family: 'Poppins', sans-serif;
    color: #252525;
    background-color: #f6f7d7;
+   height: 100vh;
+}
+
+.wrapper {
+   max-width: 1200px;
+   margin: 0 auto;
 }
