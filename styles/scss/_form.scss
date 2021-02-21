@@ -6,6 +6,11 @@ form {
       display: flex;
       justify-content: center;
       padding-right: 10px;
+
+      @include mobileMQ {
+         flex-direction: column;
+         align-items: center;
+      }
    }
 }
 
@@ -16,11 +21,22 @@ select, button {
    background-color: #f6f7d7;
    padding: 5px 20px;
    border: 3px solid #3ec1d3;
+
+   option {
+      color: #f6f7d7;
+      background: #3ec1d3;
+   }
+}
+button {
    transition: all 0.5s ease;
+
+   @include mobileMQ {
+      margin-top: 20px;
+   }
 
    &:hover {
       background-color: #00af91;
       border: 3px solid #ff9a00;
-      color: white;
+      color: #f6f7d7;
    }
 }
