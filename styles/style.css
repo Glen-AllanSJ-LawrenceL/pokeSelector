@@ -265,8 +265,8 @@ h1 span {
 
 main {
   border: 2px red solid;
-  min-height: 600px;
-  height: 80vh;
+  min-height: 660px;
+  height: auto;
 }
 
 .pokeData {
@@ -306,28 +306,33 @@ main {
   width: 100%;
 }
 
-.pokeData .pokeInfo {
+.pokeData .pokeInfo, .pokeData .pokeName {
   width: 50%;
   border: 2px solid #ff165d;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 50px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.2em;
+  text-shadow: 1px 1px 0 #ff9a00;
 }
 
 @media (max-width: 1000px) {
-  .pokeData .pokeInfo {
+  .pokeData .pokeInfo, .pokeData .pokeName {
     margin-bottom: 40px;
   }
 }
 
 @media (max-width: 700px) {
-  .pokeData .pokeInfo {
+  .pokeData .pokeInfo, .pokeData .pokeName {
     width: 80%;
   }
 }
 
 @media (max-width: 400px) {
-  .pokeData .pokeInfo {
+  .pokeData .pokeInfo, .pokeData .pokeName {
     width: 85%;
   }
 }
@@ -407,7 +412,7 @@ button {
   }
 }
 
-button:hover {
+button:hover, button:focus {
   background-color: #00af91;
   border: 3px solid #ff9a00;
   color: #f6f7d7;

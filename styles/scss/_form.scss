@@ -34,7 +34,7 @@ button {
       margin-top: 20px;
    }
 
-   &:hover {
+   &:hover, &:focus {
       background-color: #00af91;
       border: 3px solid #ff9a00;
       color: #f6f7d7;

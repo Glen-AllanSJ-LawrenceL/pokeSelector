@@ -1,8 +1,8 @@
 // Only for testing to ensure that SCSS is properly updating css file
 main {
     border: 2px red solid;
-    min-height: 600px;
-    height: 80vh;
+    min-height: 660px;
+    height: auto;
 }
 
 .pokeData {
@@ -38,12 +38,17 @@ main {
         }
     }
 
-    .pokeInfo {
+    .pokeInfo, .pokeName {
         width: 50%;
         border: 2px solid #ff165d;
         border-radius: 10px;
         padding: 20px;
         margin-bottom: 50px;
+        text-align: center;
+        font-weight: 700;
+        text-transform: capitalize;
+        letter-spacing: 0.2em;
+        text-shadow: 1px 1px 0 #ff9a00;
 
         @include laptopMQ {
             margin-bottom: 40px;

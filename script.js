@@ -21,7 +21,8 @@ pokeSelector.apiUrl = "https://pokeapi.co/api/v2/pokemon";
 const button = document.querySelector('button');
 const typeInput = document.querySelector('option');
 let imageEl = document.querySelector('img');
-let paragraphEl = document.querySelector('p');
+let pokeName = document.querySelector('.pokeName');
+let pokeInfo = document.querySelector('.pokeInfo');
 
 button.addEventListener('click', (event) => {
     event.preventDefault();
@@ -63,6 +64,15 @@ pokeSelector.getPokeData = () => {
                 showImages();
                 pokemonName = pokeData.name;
                 showName();
+                // if statement to see if the pokemon has a second type
+                if (pokeData.types[0].type.name && pokeData.types[1].type.name) {
+                    pokemonType = pokeData.types[0].type.name;
+                    pokemonType2 = pokeData.types[1].type.name;
+                    showType();
+                } else if (pokeData.types[0].type.name || pokeData.types[1].type.name) {
+                    pokemonType = pokeData.types[0].type.name;
+                    showType();
+                }
             })
             // new fetch end
 
@@ -79,13 +89,28 @@ pokeSelector.getPokeData = () => {
     let pokemonName;
     //create a variable that will hold that pokemon sprite
     let pokemonSprite;
+    //create a variable that will hold that pokemon description
+    let pokemonType;
+    let pokemonType2;
 
     function showImages() {
         imageEl.src = `${pokemonSprite}`;
     }
 
     function showName() {
-        paragraphEl.textContent = `${pokemonName}`;
+        pokeName.textContent = `${pokemonName}`;
+    }
+
+    function showType() {
+        // if statement for pokemon with multiple types
+        if (pokemonType2) {
+            pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
+        } else {
+            pokeInfo.textContent = `${pokemonType}`;
+        }
+        // if (pokemonType === 'grass') {
+        //     pokeInfo.style.color = 'green';
+        // }
     }
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
