@@ -1,13 +1,20 @@
 @import 'setup';
+@import 'mixins';
 @import 'header';
 @import 'main';
 @import 'footer';
+@import 'form';
 
 // font-family: 'Cinzel', serif;
+// font-family: 'Poppins', sans-serif;
+
 html {
    font-size: 62.5%;
 }
 
 body {
-   font-family: 'Cinzel', serif;
+   font-size: 1.6rem;
+   font-family: 'Poppins', sans-serif;
+   color: #252525;
+   background-color: #f6f7d7;
 }

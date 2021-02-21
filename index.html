@@ -6,26 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet">
     <title>Pokemon Selector</title>
     
 </head>
 <body>
     <header>
-        <h1>Pokemon <span>Selector</span></h1>
+        <h1>Poke&#x301mon <span>Selector</span></h1>
     </header>
     
     <Main>
         <!-- JavaScript will be adding API data to the following elements creating new ones when required -->
-        <img src="" alt="">
-        
-        <p></p>
-        
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+        <form action="#">
+            <fieldset>
+                <label for="type" class="sr-only">Type</label>
+                <select name="type" id="type">
+                    <option value="" disabled>--Select type--</option>
+                    <option value="normal">Normal</option>
+                    <option value="grass">Grass</option>
+                    <option value="fire">Fire</option>
+                    <option value="water">Water</option>
+                    <option value="fighting">Fighting</option>
+                    <option value="flying">Flying</option>
+                    <option value="poison">Poison</option>
+                    <option value="ground">Ground</option>
+                    <option value="rock">Rock</option>
+                    <option value="bug">Bug</option>
+                    <option value="ghost">Ghost</option>
+                    <option value="electric">Electric</option>
+                    <option value="psychic">Psychic</option>
+                    <option value="ice">Ice</option>
+                    <option value="dragon">Dragon</option>
+                    <option value="dark">Dark</option>
+                    <option value="steel">Steel</option>
+                    <option value="fairy">Fairy</option>
+                </select>
+    
+                <button class="submit">Generate</button>
+            </fieldset>
+        </form>
+
+        <section class="pokeData">
+
+            <div class="pokeSprite">
+                <img src="" alt="">
+            </div>
+            
+            <p class="pokeInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex debitis ipsa velit. Minima porro, voluptate aliquam laudantium dolor deleniti necessitatibus provident doloremque voluptas ab sequi asperiores. Officiis, tempore eaque!</p>
+            
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </section>
     </Main>
     
     <footer>
