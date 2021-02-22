@@ -56,33 +56,32 @@ pokeSelector.getPokeData = () => {
         })
         .then((jsonResponse) => {
             // new fetch
-            fetch(jsonResponse.results[randomPokemon].url) 
-            .then((data) => {
-                return data.json();
-            }).then((pokeData) => {
-                console.log(pokeData);
-                pokemonSprite = pokeData.sprites.front_default;
-                showImages();
-                pokemonName = pokeData.name;
-                showName();
-                    // if statement to see if the pokemon has a second type
-                // if (pokeData.types[0].type.name && pokeData.types[1].type.name) {
-                //     pokemonType = pokeData.types[0].type.name;
-                //     pokemonType2 = pokeData.types[1].type.name;
-                //     showType();
-                // } else if (pokeData.types[0].type.name) {
-                //     pokemonType = pokeData.types[0].type.name;
-                //     showType();
-                // }
-                pokemonType = pokeData.types[0].type.name;
-                showType();
-                if (pokeData.types[1].type.name) {
-                    pokemonType2 = pokeData.types[1].type.name;
-                    showType2();
-                }
-            })
+                fetch(jsonResponse.results[randomPokemon].url) 
+                .then((data) => {
+                    return data.json();
+                }).then((pokeData) => {
+                    console.log(pokeData);
+                    pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
+                        showImages();
+                        pokemonName = pokeData.name;
+                        showName();
+                            // if statement to see if the pokemon has a second type
+                        // if (pokeData.types[0].type.name && pokeData.types[1].type.name) {
+                        //     pokemonType = pokeData.types[0].type.name;
+                        //     pokemonType2 = pokeData.types[1].type.name;
+                        //     showType();
+                        // } else if (pokeData.types[0].type.name) {
+                        //     pokemonType = pokeData.types[0].type.name;
+                        //     showType();
+                        // }
+                        pokemonType = pokeData.types[0].type.name;
+                        showType();
+                        if (typeof pokeData.types[1].type.name != undefined) {
+                            pokemonType2 = pokeData.types[1].type.name;
+                            showType2();
+                        }
+                    })
             // new fetch end
-
 
             
             
