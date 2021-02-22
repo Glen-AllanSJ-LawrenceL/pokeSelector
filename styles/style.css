@@ -264,7 +264,6 @@ h1 span {
 }
 
 main {
-  border: 2px red solid;
   min-height: 660px;
   height: auto;
 }
@@ -288,7 +287,6 @@ main {
   width: 250px;
   height: 250px;
   border-radius: 10px;
-  border: 2px solid #ff165d;
   margin: 20px 0 70px;
   -webkit-transition: 0.7s cubic-bezier(0.47, 0.73, 0.53, 1.46);
   transition: 0.7s cubic-bezier(0.47, 0.73, 0.53, 1.46);
@@ -308,10 +306,9 @@ main {
 
 .pokeData .pokeInfo, .pokeData .pokeName {
   width: 50%;
-  border: 2px solid #ff165d;
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   text-align: center;
   font-weight: 700;
   text-transform: capitalize;
@@ -394,16 +391,17 @@ select, button {
   background-color: #f6f7d7;
   padding: 5px 20px;
   border: 3px solid #3ec1d3;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+select:focus, select:hover, button:focus, button:hover {
+  border-color: #ff9a00;
 }
 
 select option, button option {
   color: #f6f7d7;
   background: #3ec1d3;
-}
-
-button {
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 @media (max-width: 400px) {
@@ -412,10 +410,14 @@ button {
   }
 }
 
-button:hover, button:focus {
+button:hover {
   background-color: #00af91;
   border: 3px solid #ff9a00;
   color: #f6f7d7;
+}
+
+button:focus {
+  border-color: #ff9a00;
 }
 
 html {
@@ -427,7 +429,6 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #252525;
   background-color: #f6f7d7;
-  height: 100vh;
 }
 
 .wrapper {

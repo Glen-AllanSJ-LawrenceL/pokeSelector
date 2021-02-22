@@ -21,22 +21,31 @@ select, button {
    background-color: #f6f7d7;
    padding: 5px 20px;
    border: 3px solid #3ec1d3;
+   transition: all 0.5s ease;
+
+   &:focus, &:hover {
+      border-color: #ff9a00;
+   }
 
    option {
       color: #f6f7d7;
       background: #3ec1d3;
    }
+
 }
 button {
-   transition: all 0.5s ease;
 
    @include mobileMQ {
       margin-top: 20px;
    }
 
-   &:hover, &:focus {
+   &:hover {
       background-color: #00af91;
       border: 3px solid #ff9a00;
       color: #f6f7d7;
+   }
+
+   &:focus {
+      border-color: #ff9a00;
    }
 }

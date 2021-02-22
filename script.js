@@ -1,11 +1,11 @@
 // Pseudo Code:
 // Create a Pokemon selector application where users selects or inputs their preferred Pokemon type.
 // Once selected, the code will take that input and save it into a variable. The application will then call the API data returning a Pokemon that fits with the user's selected type.
-// The API will also be called to return other information on the Pokemon such as size, weight, evolutions etc.
+
 
 // Stretch Goals:
 // Create a filter so that Pokemon can be included or excluded based on generation and/or games (i.e. Generation: Red, Blue, Yellow). Might be possible through this endpoint: https://pokeapi.co/api/v2/generation/{id or name}/
-
+// The API will also be called to return other information on the Pokemon such as size, weight, evolutions etc.
 
 
 // Create and app object (pokeSelector) for namespace
@@ -17,14 +17,15 @@ const pokeSelector = {};
 // - apikey is not required for data to be obtained as per documentation: https://pokeapi.co/docs/v2.
 pokeSelector.apiUrl = "https://pokeapi.co/api/v2/pokemon";
 
-// getPokeData when user submits selection
 const button = document.querySelector('button');
 const typeInput = document.querySelector('option');
 let imageEl = document.querySelector('img');
 let pokeName = document.querySelector('.pokeName');
 let pokeInfo = document.querySelector('.pokeInfo');
 
+// getPokeData when user submits selection
 button.addEventListener('click', (event) => {
+    pokeInfo.innerHTML = "";
     event.preventDefault();
     pokeSelector.getPokeData();
     // Method used to get sprite data from pokeAPI
@@ -64,14 +65,20 @@ pokeSelector.getPokeData = () => {
                 showImages();
                 pokemonName = pokeData.name;
                 showName();
-                // if statement to see if the pokemon has a second type
-                if (pokeData.types[0].type.name && pokeData.types[1].type.name) {
-                    pokemonType = pokeData.types[0].type.name;
+                    // if statement to see if the pokemon has a second type
+                // if (pokeData.types[0].type.name && pokeData.types[1].type.name) {
+                //     pokemonType = pokeData.types[0].type.name;
+                //     pokemonType2 = pokeData.types[1].type.name;
+                //     showType();
+                // } else if (pokeData.types[0].type.name) {
+                //     pokemonType = pokeData.types[0].type.name;
+                //     showType();
+                // }
+                pokemonType = pokeData.types[0].type.name;
+                showType();
+                if (pokeData.types[1].type.name) {
                     pokemonType2 = pokeData.types[1].type.name;
-                    showType();
-                } else if (pokeData.types[0].type.name || pokeData.types[1].type.name) {
-                    pokemonType = pokeData.types[0].type.name;
-                    showType();
+                    showType2();
                 }
             })
             // new fetch end
@@ -102,16 +109,23 @@ pokeSelector.getPokeData = () => {
     }
 
     function showType() {
+        pokeInfo.appendChild(document.createTextNode(`${pokemonType}`));
+    }
+
+    function showType2() {
+        pokeInfo.appendChild(document.createTextNode(`, ${pokemonType2}`));
+    }
+    // function showType() {
         // if statement for pokemon with multiple types
-        if (pokemonType2) {
-            pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
-        } else {
-            pokeInfo.textContent = `${pokemonType}`;
-        }
+        // if (pokemonType2) {
+        //     pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
+        // } else {
+        //     pokeInfo.textContent = `${pokemonType}`;
+        // }
         // if (pokemonType === 'grass') {
         //     pokeInfo.style.color = 'green';
         // }
-    }
+}
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){
@@ -124,9 +138,9 @@ pokeSelector.getPokeData = () => {
     //             .then((nestedPokemonData) => {
     //                 console.log(nestedPokemonData);
     //             })
-    //     }
+        //     }
+        // }    
     // }    
-}    
 
 // Create a method () to make API calls when the user has provided an input which is their desired pokemon type. When the API call is successful, the application will display the result by appending or changing text content to the resulting HTML tag which is likely going to be a <p> and/or <h>.
 

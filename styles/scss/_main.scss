@@ -1,6 +1,5 @@
 // Only for testing to ensure that SCSS is properly updating css file
 main {
-    border: 2px red solid;
     min-height: 660px;
     height: auto;
 }
@@ -14,10 +13,10 @@ main {
     // margin: 20px 0;
 
     .pokeSprite {
+        // border: 2px solid #ff165d;
         width: 250px;
         height: 250px;
         border-radius: 10px;
-        border: 2px solid #ff165d;
         margin: 20px 0 70px;
         transition: 0.7s cubic-bezier(.47,.73,.53,1.46);
 
@@ -39,11 +38,11 @@ main {
     }
 
     .pokeInfo, .pokeName {
+        // border: 2px solid #ff165d;
         width: 50%;
-        border: 2px solid #ff165d;
         border-radius: 10px;
         padding: 20px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         text-align: center;
         font-weight: 700;
         text-transform: capitalize;
