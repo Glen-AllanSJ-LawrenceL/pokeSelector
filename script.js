@@ -122,6 +122,13 @@ function showType(type) {
 }
 
 
+// Function for obtaining user input from search
+pokeSelector.getUserChoice = () => {
+    document.querySelector('pokeSearch').addEventListener('search', (event) => {
+        const userChoice = event.target.value;
+        console.log(userChoice);
+        })
+    }
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){
@@ -176,6 +183,7 @@ function showType(type) {
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
     // pokeSelector.getPokeData();
+
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();

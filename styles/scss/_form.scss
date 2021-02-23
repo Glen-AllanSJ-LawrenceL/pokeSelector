@@ -14,10 +14,14 @@ form {
    }
 }
 
-select, button {
+.pokeSearch {
+   width: 200px;
+}
+
+.pokeSearch, button {
    font-family: 'Poppins', sans-serif;
    border-radius: 5px;
-   margin: 0 30px;
+   margin: 0 10px;
    background-color: #f6f7d7;
    padding: 5px 20px;
    border: 3px solid #3ec1d3;
