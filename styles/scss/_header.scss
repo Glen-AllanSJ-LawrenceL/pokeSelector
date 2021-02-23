@@ -1,7 +1,7 @@
 h1 {
-   font-size: 12vw;
+   font-size: 10vw;
    font-family: 'Cinzel', serif;
-   width: 50%;
+   width: 45%;
    margin: 20px auto 20px;
    text-indent: -18%;
    color: #ff9a00;
@@ -10,7 +10,7 @@ h1 {
    transition: scale 0.5s cubic-bezier(.48,.43,.53,1.46), text-shadow 0.5s cubic-bezier(.48,.43,.53,1.46);
 
    @include desktopMQ {
-      font-size: 14rem;
+      font-size: 12rem;
    }
 
    &:hover {
@@ -19,6 +19,6 @@ h1 {
    }
 
    span {
-      margin-left: 0;
+      margin-left: 2%;
    }
 }
