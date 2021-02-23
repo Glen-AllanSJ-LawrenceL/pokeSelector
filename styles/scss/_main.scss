@@ -17,7 +17,7 @@ main {
         width: 220px;
         height: 220px;
         border-radius: 10px;
-        margin: 20px 0 70px;
+        margin: 0 0 20px;
         transition: 0.7s cubic-bezier(.47,.73,.53,1.46);
 
         &:hover {
@@ -46,8 +46,8 @@ main {
         font-weight: 700;
         text-transform: capitalize;
         letter-spacing: 0.2em;
-        position: relative;
-        bottom: 40px;
+        // position: relative;
+        // bottom: 40px;
 
         @include laptopMQ {
             margin-bottom: 40px;
