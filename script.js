@@ -69,7 +69,7 @@ pokeSelector.getPokeData = () => {
                         showName();
 
                         pokeData.types.forEach((type) => {
-                            console.log(type);
+                            // console.log(type);
                             showType(type.type.name);
                         })
                     })
@@ -92,7 +92,6 @@ let pokemonName;
 let pokemonSprite;
 //create a variable that will hold that pokemon description
 let pokemonType;
-let pokemonType2;
 
 function showImages() {
     imageEl.src = `${pokemonSprite}`;
@@ -102,22 +101,27 @@ function showName() {
     pokeName.textContent = `${pokemonName}`;
 }
 
-function showType(name) {
-    const pokeName = document.createElement('p');
-    pokeName.innerText = name;
-    pokeInfo.appendChild(pokeName);
+function showType(type) {
+    const pokeType = document.createElement('p');
+    pokeType.innerText = type;
+    if (type === 'grass') {
+        pokeType.style.backgroundColor = '#729d39';
+    } else if (type === 'normal') {
+        pokeType.style.backgroundColor = '#e3e3e3';
+    } else if (type === 'fire') {
+        pokeType.style.backgroundColor = '#f33535';
+    } else if (type === 'water') {
+        pokeType.style.backgroundColor = '#3490de';
+    } else if (type === 'fighting') {
+        pokeType.style.backgroundColor = '#903749';
+    } else if (type === 'flying') {
+        pokeType.style.backgroundColor = '#a6d0e4';
+    }
+    pokeInfo.appendChild(pokeType);
+    // changing the pokeName background color based on the pokemon type
 }
 
-// function showType() {
-    // if statement for pokemon with multiple types
-    // if (pokemonType2) {
-    //     pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
-    // } else {
-    //     pokeInfo.textContent = `${pokemonType}`;
-    // }
-    // if (pokemonType === 'grass') {
-    //     pokeInfo.style.color = 'green';
-    // }
+
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){
