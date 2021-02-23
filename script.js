@@ -55,8 +55,6 @@ pokeSelector.getPokeData = () => {
             return response.json();
         })
         .then((jsonResponse) => {
-            console.log(jsonResponse);
-
             // new fetch
             fetch(jsonResponse.results[randomPokemon].url) 
                 .then((data) => {
@@ -67,9 +65,7 @@ pokeSelector.getPokeData = () => {
                         showImages();
                         pokemonName = pokeData.name;
                         showName();
-
                         pokeData.types.forEach((type) => {
-                            console.log(type);
                             showType(type.type.name);
                         })
                     })
@@ -92,7 +88,6 @@ let pokemonName;
 let pokemonSprite;
 //create a variable that will hold that pokemon description
 let pokemonType;
-let pokemonType2;
 
 function showImages() {
     imageEl.src = `${pokemonSprite}`;
@@ -102,12 +97,51 @@ function showName() {
     pokeName.textContent = `${pokemonName}`;
 }
 
-function showType(name) {
-    const pokeName = document.createElement('p');
-    pokeName.innerText = name;
-    pokeInfo.appendChild(pokeName);
+function showType(type) {
+    const pokeType = document.createElement('p');
+    pokeType.innerText = type;
+    if (type === 'grass') {
+        pokeType.style.backgroundColor = '#729d39';
+    } else if (type === 'normal') {
+        pokeType.style.backgroundColor = '#e3e3e3';
+    } else if (type === 'fire') {
+        pokeType.style.backgroundColor = '#f33535';
+    } else if (type === 'water') {
+        pokeType.style.backgroundColor = '#3490de';
+    } else if (type === 'fighting') {
+        pokeType.style.backgroundColor = '#903749';
+    } else if (type === 'flying') {
+        pokeType.style.backgroundColor = '#80d6ff';
+    } else if (type === 'poison') {
+        pokeType.style.backgroundColor = '#6639a6';
+    } else if (type === 'ground') {
+        pokeType.style.backgroundColor = '#ffebbb';
+    } else if (type === 'rock') {
+        pokeType.style.backgroundColor = '#c7b198';
+    } else if (type === 'bug') {
+        pokeType.style.backgroundColor = '#a7d129';
+    } else if (type === 'ghost') {
+        pokeType.style.backgroundColor = '#916dd5';
+    } else if (type === 'electric') {
+        pokeType.style.backgroundColor = '#f9d56e';
+    } else if (type === 'psychic') {
+        pokeType.style.backgroundColor = '#ff6699';
+    } else if (type === 'ice') {
+        pokeType.style.backgroundColor = '#88e1f2';
+    } else if (type === 'dragon') {
+        pokeType.style.backgroundColor = '#848ccf';
+    } else if (type === 'dark') {
+        pokeType.style.backgroundColor = '#543a3a';
+    } else if (type === 'steel') {
+        pokeType.style.backgroundColor = '#dbedf3';
+    } else if (type === 'fairy') {
+        pokeType.style.backgroundColor = '#fca3cc';
+    }
+    pokeInfo.appendChild(pokeType);
+    // changing the pokeName background color based on the pokemon type
 }
 
+// efa8e4
 // Function for obtaining user input from search
 pokeSelector.getUserChoice = () => {
     document.querySelector('pokeSearch').addEventListener('search', (event) => {
@@ -115,19 +149,6 @@ pokeSelector.getUserChoice = () => {
         console.log(userChoice);
         })
     }
-
-
-
-// function showType() {
-    // if statement for pokemon with multiple types
-    // if (pokemonType2) {
-    //     pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
-    // } else {
-    //     pokeInfo.textContent = `${pokemonType}`;
-    // }
-    // if (pokemonType === 'grass') {
-    //     pokeInfo.style.color = 'green';
-    // }
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){

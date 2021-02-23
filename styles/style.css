@@ -313,7 +313,6 @@ main {
   font-weight: 700;
   text-transform: capitalize;
   letter-spacing: 0.2em;
-  text-shadow: 1px 1px 0 #ff9a00;
 }
 
 @media (max-width: 1000px) {
@@ -332,6 +331,28 @@ main {
   .pokeData .pokeInfo, .pokeData .pokeName {
     width: 85%;
   }
+}
+
+.pokeData .pokeName {
+  text-shadow: 1px 1px 0 #f08a5d;
+}
+
+.pokeData .pokeInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.pokeData .pokeInfo p {
+  margin: 0 10px;
+  padding: 5px 10px 5px 12px;
+  border-radius: 10px;
+  color: #fff;
+  border: 2px solid #fff;
 }
 
 footer {
@@ -384,10 +405,14 @@ form fieldset {
   }
 }
 
-select, .pokeSearch, button {
+.pokeSearch {
+  width: 200px;
+}
+
+.pokeSearch, button {
   font-family: 'Poppins', sans-serif;
   border-radius: 5px;
-  margin: 0 30px;
+  margin: 0 10px;
   background-color: #f6f7d7;
   padding: 5px 20px;
   border: 3px solid #3ec1d3;
@@ -395,11 +420,11 @@ select, .pokeSearch, button {
   transition: all 0.5s ease;
 }
 
-select:focus, select:hover, .pokeSearch:focus, .pokeSearch:hover, button:focus, button:hover {
+.pokeSearch:focus, .pokeSearch:hover, button:focus, button:hover {
   border-color: #ff9a00;
 }
 
-select option, .pokeSearch option, button option {
+.pokeSearch option, button option {
   color: #f6f7d7;
   background: #3ec1d3;
 }
