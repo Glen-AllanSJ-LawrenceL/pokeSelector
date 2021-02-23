@@ -47,7 +47,6 @@ main {
         font-weight: 700;
         text-transform: capitalize;
         letter-spacing: 0.2em;
-        text-shadow: 1px 1px 0 #000;
 
         @include laptopMQ {
             margin-bottom: 40px;
@@ -62,15 +61,21 @@ main {
         }
     }
 
+    .pokeName {
+        text-shadow: 1px 1px 0 #f08a5d;
+    }
+
     .pokeInfo {
         display: flex;
         justify-content: center;
+        text-shadow: 1px 1px 0 #000;
 
         p {
             margin: 0 10px;
-            padding: 6px 10px 5px 13px;
+            padding: 5px 10px 5px 12px;
             border-radius: 10px;
             color: #fff;
+            border: 2px solid #fff;
         }
     }
 

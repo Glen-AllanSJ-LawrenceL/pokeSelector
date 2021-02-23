@@ -55,8 +55,6 @@ pokeSelector.getPokeData = () => {
             return response.json();
         })
         .then((jsonResponse) => {
-            console.log(jsonResponse);
-
             // new fetch
             fetch(jsonResponse.results[randomPokemon].url) 
                 .then((data) => {
@@ -67,9 +65,7 @@ pokeSelector.getPokeData = () => {
                         showImages();
                         pokemonName = pokeData.name;
                         showName();
-
                         pokeData.types.forEach((type) => {
-                            // console.log(type);
                             showType(type.type.name);
                         })
                     })
@@ -115,13 +111,37 @@ function showType(type) {
     } else if (type === 'fighting') {
         pokeType.style.backgroundColor = '#903749';
     } else if (type === 'flying') {
-        pokeType.style.backgroundColor = '#a6d0e4';
+        pokeType.style.backgroundColor = '#80d6ff';
+    } else if (type === 'poison') {
+        pokeType.style.backgroundColor = '#6639a6';
+    } else if (type === 'ground') {
+        pokeType.style.backgroundColor = '#ffebbb';
+    } else if (type === 'rock') {
+        pokeType.style.backgroundColor = '#c7b198';
+    } else if (type === 'bug') {
+        pokeType.style.backgroundColor = '#a7d129';
+    } else if (type === 'ghost') {
+        pokeType.style.backgroundColor = '#916dd5';
+    } else if (type === 'electric') {
+        pokeType.style.backgroundColor = '#f9d56e';
+    } else if (type === 'psychic') {
+        pokeType.style.backgroundColor = '#ff6699';
+    } else if (type === 'ice') {
+        pokeType.style.backgroundColor = '#88e1f2';
+    } else if (type === 'dragon') {
+        pokeType.style.backgroundColor = '#848ccf';
+    } else if (type === 'dark') {
+        pokeType.style.backgroundColor = '#543a3a';
+    } else if (type === 'steel') {
+        pokeType.style.backgroundColor = '#dbedf3';
+    } else if (type === 'fairy') {
+        pokeType.style.backgroundColor = '#fca3cc';
     }
     pokeInfo.appendChild(pokeType);
     // changing the pokeName background color based on the pokemon type
 }
 
-
+// efa8e4
 // Function for obtaining user input from search
 pokeSelector.getUserChoice = () => {
     document.querySelector('pokeSearch').addEventListener('search', (event) => {
