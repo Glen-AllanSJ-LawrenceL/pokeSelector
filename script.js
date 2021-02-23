@@ -38,7 +38,7 @@ pokeSelector.getPokeData = () => {
     const url = new URL(pokeSelector.apiUrl);
     url.search = new URLSearchParams({
         offset: 0,
-        limit: 1118,
+        limit: 898,
     })
 
     // Using the built-in fetch API to make a request to the PokeAPI endpoint
@@ -48,15 +48,17 @@ pokeSelector.getPokeData = () => {
     // for (let i = 0; i <=50; i++){
     //     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     //     promisesArray.push()
-    const randomPokemon = Math.floor(Math.random() * 1118);
+    const randomPokemon = Math.floor(Math.random() * 898);
 
     fetch(url)
         .then((response) => {
             return response.json();
         })
         .then((jsonResponse) => {
+            console.log(jsonResponse);
+
             // new fetch
-                fetch(jsonResponse.results[randomPokemon].url) 
+            fetch(jsonResponse.results[randomPokemon].url) 
                 .then((data) => {
                     return data.json();
                 }).then((pokeData) => {
@@ -65,66 +67,57 @@ pokeSelector.getPokeData = () => {
                         showImages();
                         pokemonName = pokeData.name;
                         showName();
-                            // if statement to see if the pokemon has a second type
-                        // if (pokeData.types[0].type.name && pokeData.types[1].type.name) {
-                        //     pokemonType = pokeData.types[0].type.name;
-                        //     pokemonType2 = pokeData.types[1].type.name;
-                        //     showType();
-                        // } else if (pokeData.types[0].type.name) {
-                        //     pokemonType = pokeData.types[0].type.name;
-                        //     showType();
-                        // }
-                        pokemonType = pokeData.types[0].type.name;
-                        showType();
-                        if (typeof pokeData.types[1].type.name != undefined) {
-                            pokemonType2 = pokeData.types[1].type.name;
-                            showType2();
-                        }
+
+                        pokeData.types.forEach((type) => {
+                            console.log(type);
+                            showType(type.type.name);
+                        })
                     })
             // new fetch end
-
+            })
             
             
 
             // Pass the data into the displayPhotos method
             // AKA call the displayPhotos within getPhotos
             // galleryApp.displayPhotos(jsonResponse);
-        })
+
     
-    // create a variable that will hold the pokemon name
-    let pokemonName;
-    //create a variable that will hold that pokemon sprite
-    let pokemonSprite;
-    //create a variable that will hold that pokemon description
-    let pokemonType;
-    let pokemonType2;
+        }
 
-    function showImages() {
-        imageEl.src = `${pokemonSprite}`;
-    }
+// CREATE FUNCTION FOR DISPLAY ****
+// create a variable that will hold the pokemon name
+let pokemonName;
+//create a variable that will hold that pokemon sprite
+let pokemonSprite;
+//create a variable that will hold that pokemon description
+let pokemonType;
+let pokemonType2;
 
-    function showName() {
-        pokeName.textContent = `${pokemonName}`;
-    }
-
-    function showType() {
-        pokeInfo.appendChild(document.createTextNode(`${pokemonType}`));
-    }
-
-    function showType2() {
-        pokeInfo.appendChild(document.createTextNode(`, ${pokemonType2}`));
-    }
-    // function showType() {
-        // if statement for pokemon with multiple types
-        // if (pokemonType2) {
-        //     pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
-        // } else {
-        //     pokeInfo.textContent = `${pokemonType}`;
-        // }
-        // if (pokemonType === 'grass') {
-        //     pokeInfo.style.color = 'green';
-        // }
+function showImages() {
+    imageEl.src = `${pokemonSprite}`;
 }
+
+function showName() {
+    pokeName.textContent = `${pokemonName}`;
+}
+
+function showType(name) {
+    const pokeName = document.createElement('p');
+    pokeName.innerText = name;
+    pokeInfo.appendChild(pokeName);
+}
+
+// function showType() {
+    // if statement for pokemon with multiple types
+    // if (pokemonType2) {
+    //     pokeInfo.textContent = `${pokemonType}, ${pokemonType2}`
+    // } else {
+    //     pokeInfo.textContent = `${pokemonType}`;
+    // }
+    // if (pokemonType === 'grass') {
+    //     pokeInfo.style.color = 'green';
+    // }
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){
