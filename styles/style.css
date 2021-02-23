@@ -384,7 +384,7 @@ form fieldset {
   }
 }
 
-select, button {
+select, .pokeSearch, button {
   font-family: 'Poppins', sans-serif;
   border-radius: 5px;
   margin: 0 30px;
@@ -395,11 +395,11 @@ select, button {
   transition: all 0.5s ease;
 }
 
-select:focus, select:hover, button:focus, button:hover {
+select:focus, select:hover, .pokeSearch:focus, .pokeSearch:hover, button:focus, button:hover {
   border-color: #ff9a00;
 }
 
-select option, button option {
+select option, .pokeSearch option, button option {
   color: #f6f7d7;
   background: #3ec1d3;
 }

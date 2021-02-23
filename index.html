@@ -20,7 +20,8 @@
         <!-- JavaScript will be adding API data to the following elements creating new ones when required -->
         <form action="#">
             <fieldset>
-                <label for="type" class="sr-only">Type</label>
+                <!-- Type selector for Pokemon -->
+                <!-- <label for="type" class="sr-only">Type</label>
                 <select name="type" id="type">
                     <option value="" disabled>--Select type--</option>
                     <option value="normal">Normal</option>
@@ -41,7 +42,10 @@
                     <option value="dark">Dark</option>
                     <option value="steel">Steel</option>
                     <option value="fairy">Fairy</option>
-                </select>
+                </select> -->
+
+                <label for="pokeSearch" class="sr-only">Search</label>
+                <input type="text" name="pokeSearch" class="pokeSearch" id="pokeSearch" placeholder="Search for a Pokemon">
     
                 <button class="submit">Generate</button>
             </fieldset>

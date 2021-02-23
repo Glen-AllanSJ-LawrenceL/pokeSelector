@@ -108,6 +108,16 @@ function showType(name) {
     pokeInfo.appendChild(pokeName);
 }
 
+// Function for obtaining user input from search
+pokeSelector.getUserChoice = () => {
+    document.querySelector('pokeSearch').addEventListener('search', (event) => {
+        const userChoice = event.target.value;
+        console.log(userChoice);
+        })
+    }
+
+
+
 // function showType() {
     // if statement for pokemon with multiple types
     // if (pokemonType2) {
@@ -172,6 +182,7 @@ function showType(name) {
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
     // pokeSelector.getPokeData();
+
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();
