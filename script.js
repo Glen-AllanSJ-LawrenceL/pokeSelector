@@ -44,7 +44,7 @@ pokeSelector.getPokeData = (userChoice) => {
     url.search = new URLSearchParams({
         offset: 0,
         limit: 898,
-        name: userChoice,
+        name: userChoice
     })
 
     // Using the built-in fetch API to make a request to the PokeAPI endpoint
@@ -68,21 +68,21 @@ pokeSelector.getPokeData = (userChoice) => {
                 }).then((pokeData) => {
                     console.log(pokeData);
                     pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
-                        showImages();
-                        pokemonNumber = pokeData.id;
-                        showNumber();
-                        pokemonName = pokeData.name;
-                        showName();
-                        pokeData.types.forEach((type) => {
-                            showType(type.type.name);
-                        });
-                        pokemonWeight = pokeData.weight;
-                        showWeight();
+                    showImages();
+                    pokemonNumber = pokeData.id;
+                    showNumber();
+                    pokemonName = pokeData.name;
+                    showName();
+                    pokeData.types.forEach((type) => {
+                        showType(type.type.name);
+                    });
+                    pokemonWeight = pokeData.weight;
+                    showWeight();
                     })
                 // Used to catch errors if 2nd API fetch request fails.    
-                .catch ( (error) => {
-                    alert('2nd fetch API request has failed', error);
-                });    
+                    .catch ( (error) => {
+                        alert('2nd fetch API request has failed', error);
+                    });    
             // new fetch end
         })
         // Used to catch errors if 1st API fetch request fails
@@ -111,7 +111,7 @@ let pokemonType;
 let pokemonWeight;
 
 function showNumber() {
-    pokeNumber.textContent = `National Pokedex #${pokemonNumber}`;
+    pokeNumber.textContent = `National Pokédex #${pokemonNumber}`;
 }
 
 function showImages() {
@@ -177,16 +177,16 @@ pokeSelector.getUserChoice = () => {
     pokeSearch.textContent = "";
     const pokemonSearch = document.getElementById('#pokeSearch');
     console.log(pokemonSearch);
-    pokemonSearch.addEventListener('keyUp', (event) => {
-        console.log(event);
+    pokemonSearch.addEventListener('input', (event) => {
+        console.log(event.target.value);
         const userChoice = event.target.value;
 
         pokeSelector.getPokeData(userChoice);
         console.log(userChoice);
 
-        showImages();
-        showName();
-        showType();
+        // showImages();
+        // showName();
+        // showType();
         })
 }
     

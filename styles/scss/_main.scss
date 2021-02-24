@@ -46,12 +46,6 @@ main {
         font-weight: 700;
         text-transform: capitalize;
         letter-spacing: 0.2em;
-        // position: relative;
-        // bottom: 40px;
-
-        @include laptopMQ {
-            margin-bottom: 40px;
-        }
 
         @include tabletMQ {
             width: 80%;
@@ -70,7 +64,6 @@ main {
         display: flex;
         justify-content: center;
         text-shadow: 1px 1px 0 #000;
-        margin-bottom: 20px;
 
         p {
             margin: 0 10px;
@@ -79,6 +72,10 @@ main {
             color: #fff;
             border: 2px solid #fff;
         }
+    }
+
+    .pokeWeight {
+        margin-bottom: 20px;
     }
 
 }

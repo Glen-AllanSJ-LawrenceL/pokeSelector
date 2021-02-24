@@ -312,12 +312,6 @@ main {
   letter-spacing: 0.2em;
 }
 
-@media (max-width: 1000px) {
-  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
-    margin-bottom: 40px;
-  }
-}
-
 @media (max-width: 700px) {
   .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
     width: 80%;
@@ -342,7 +336,6 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   text-shadow: 1px 1px 0 #000;
-  margin-bottom: 20px;
 }
 
 .pokeData .pokeInfo p {
@@ -351,6 +344,10 @@ main {
   border-radius: 10px;
   color: #fff;
   border: 2px solid #fff;
+}
+
+.pokeData .pokeWeight {
+  margin-bottom: 20px;
 }
 
 footer {
