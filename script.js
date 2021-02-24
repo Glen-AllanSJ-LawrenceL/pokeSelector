@@ -62,25 +62,13 @@ pokeSelector.getPokeData = (userChoice) => {
         })
         .then((jsonResponse) => {
             // new fetch
-            fetch(jsonResponse.results[randomPokemon].url) 
+            fetch(jsonResponse.results.url) 
                 .then((data) => {
                     return data.json();
                 }).then((pokeData) => {
                     console.log(pokeData);
-                    pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
-                    showImages();
-                    pokemonNumber = pokeData.id;
-                    showNumber();
-                    pokemonName = pokeData.name;
-                    showName();
-                    pokeData.types.forEach((type) => {
-                        showType(type.type.name);
-                    });
-                    pokemonWeight = pokeData.weight;
-                    showWeight();
-                    pokemonHeight = pokeData.height;
-                    showHeight();
-                    })
+                    pokeSelector.displayPokemon();
+                })
                 // Used to catch errors if 2nd API fetch request fails.    
                     .catch ( (error) => {
                         alert('2nd fetch API request has failed', error);
@@ -99,7 +87,6 @@ pokeSelector.getPokeData = (userChoice) => {
 
     
 }
-        
 
 // CREATE FUNCTION FOR DISPLAY ****
 let pokemonNumber;
@@ -114,80 +101,105 @@ let pokemonWeight;
 // Create a variable that will hold that pokemon's height
 let pokemonHeight;
 
-
-function showNumber() {
-    pokeNumber.textContent = `National Pokédex #${pokemonNumber}`;
-}
-
-function showImages() {
-    imageEl.src = `${pokemonSprite}`;
-}
-
-function showName() {
-    pokeName.textContent = `${pokemonName}`;
-}
-
-function showType(type) {
-    const pokeType = document.createElement('p');
-    pokeType.innerText = type;
-    if (type === 'grass') {
-        pokeType.style.backgroundColor = '#729d39';
-    } else if (type === 'normal') {
-        pokeType.style.backgroundColor = '#e3e3e3';
-    } else if (type === 'fire') {
-        pokeType.style.backgroundColor = '#f33535';
-    } else if (type === 'water') {
-        pokeType.style.backgroundColor = '#3490de';
-    } else if (type === 'fighting') {
-        pokeType.style.backgroundColor = '#903749';
-    } else if (type === 'flying') {
-        pokeType.style.backgroundColor = '#80d6ff';
-    } else if (type === 'poison') {
-        pokeType.style.backgroundColor = '#6639a6';
-    } else if (type === 'ground') {
-        pokeType.style.backgroundColor = '#ffebbb';
-    } else if (type === 'rock') {
-        pokeType.style.backgroundColor = '#c7b198';
-    } else if (type === 'bug') {
-        pokeType.style.backgroundColor = '#a7d129';
-    } else if (type === 'ghost') {
-        pokeType.style.backgroundColor = '#916dd5';
-    } else if (type === 'electric') {
-        pokeType.style.backgroundColor = '#f9d56e';
-    } else if (type === 'psychic') {
-        pokeType.style.backgroundColor = '#ff6699';
-    } else if (type === 'ice') {
-        pokeType.style.backgroundColor = '#88e1f2';
-    } else if (type === 'dragon') {
-        pokeType.style.backgroundColor = '#848ccf';
-    } else if (type === 'dark') {
-        pokeType.style.backgroundColor = '#543a3a';
-    } else if (type === 'steel') {
-        pokeType.style.backgroundColor = '#dbedf3';
-    } else if (type === 'fairy') {
-        pokeType.style.backgroundColor = '#fca3cc';
+pokeSelector.displayPokemon = () => {
+    pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
+    showImages();
+    pokemonNumber = pokeData.id;
+    showNumber();
+    pokemonName = pokeData.name;
+    showName();
+    pokeData.types.forEach((type) => {
+        showType(type.type.name);
+    });
+    pokemonWeight = pokeData.weight;
+    showWeight();
+    pokemonHeight = pokeData.height;
+    showHeight();
+    
+    
+    function showNumber() {
+        pokeNumber.textContent = `National Pokédex #${pokemonNumber}`;
     }
-    pokeInfo.appendChild(pokeType);
-    // changing the pokeName background color based on the pokemon type
-}
 
-// Function to display weight on page. Weight API is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
-function showWeight(){
-    pokeWeight.textContent = `Weight: ${(pokemonWeight / 10).toFixed(1)} kilograms`; 
-}
+    function showImages() {
+        imageEl.src = `${pokemonSprite}`;
+    }
 
-// Function to display height. Height data was in decimetres so converted to centimetres by multiplying.
-function showHeight(){
-    pokeHeight.textContent = `Height: ${pokemonHeight * 10} centimetres`;
+    function showName() {
+        pokeName.textContent = `${pokemonName}`;
+    }
+    
+    function showType(type) {
+        const pokeType = document.createElement('p');
+        pokeType.innerText = type;
+        if (type === 'grass') {
+            pokeType.style.backgroundColor = '#729d39';
+        } else if (type === 'normal') {
+            pokeType.style.backgroundColor = '#e3e3e3';
+        } else if (type === 'fire') {
+            pokeType.style.backgroundColor = '#f33535';
+        } else if (type === 'water') {
+            pokeType.style.backgroundColor = '#3490de';
+        } else if (type === 'fighting') {
+            pokeType.style.backgroundColor = '#903749';
+        } else if (type === 'flying') {
+            pokeType.style.backgroundColor = '#80d6ff';
+        } else if (type === 'poison') {
+            pokeType.style.backgroundColor = '#6639a6';
+        } else if (type === 'ground') {
+            pokeType.style.backgroundColor = '#ffebbb';
+        } else if (type === 'rock') {
+            pokeType.style.backgroundColor = '#c7b198';
+        } else if (type === 'bug') {
+            pokeType.style.backgroundColor = '#a7d129';
+        } else if (type === 'ghost') {
+            pokeType.style.backgroundColor = '#916dd5';
+        } else if (type === 'electric') {
+            pokeType.style.backgroundColor = '#f9d56e';
+        } else if (type === 'psychic') {
+            pokeType.style.backgroundColor = '#ff6699';
+        } else if (type === 'ice') {
+            pokeType.style.backgroundColor = '#88e1f2';
+        } else if (type === 'dragon') {
+            pokeType.style.backgroundColor = '#848ccf';
+        } else if (type === 'dark') {
+            pokeType.style.backgroundColor = '#543a3a';
+        } else if (type === 'steel') {
+            pokeType.style.backgroundColor = '#dbedf3';
+        } else if (type === 'fairy') {
+            pokeType.style.backgroundColor = '#fca3cc';
+        }
+        pokeInfo.appendChild(pokeType);
+        // changing the pokeName background color based on the pokemon type
+    }
+
+    // Function to display weight on page. Weight API is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
+    function showWeight() {
+        pokeWeight.textContent = `Weight: ${(pokemonWeight / 10).toFixed(1)} kilograms`;
+    }
+
+    // Function to display height. Height data was in decimetres so converted to centimetres by multiplying.
+    function showHeight() {
+        pokeHeight.textContent = `Height: ${pokemonHeight * 10} centimetres`;
+    }
 }
+        
+
+
+
+
+
+
+
+
 
 // efa8e4
 // Function for obtaining user input from search
 pokeSelector.getUserChoice = () => {
     pokeSearch.textContent = "";
-    const pokemonSearch = document.getElementById('#pokeSearch');
+    const pokemonSearch = document.getElementById('pokeSearch');
     console.log(pokemonSearch);
-    pokemonSearch.addEventListener('input', (event) => {
+    pokemonSearch.addEventListener('keyup', (event) => {
         console.log(event.target.value);
         const userChoice = event.target.value;
 
@@ -252,8 +264,8 @@ pokeSelector.getUserChoice = () => {
 
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
-    // pokeSelector.getPokeData();
-    // pokeSelector.getUserChoice();
+    pokeSelector.getUserChoice();
+    pokeSelector.getPokeData();
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();
