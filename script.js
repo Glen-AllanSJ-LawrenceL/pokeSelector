@@ -20,11 +20,11 @@ pokeSelector.apiUrl = "https://pokeapi.co/api/v2/pokemon";
 const button = document.querySelector('button');
 const typeInput = document.querySelector('option');
 let imageEl = document.querySelector('img');
+let pokeNumber = document.querySelector('.pokeNumber');
 let pokeName = document.querySelector('.pokeName');
 let pokeInfo = document.querySelector('.pokeInfo');
 let pokeWeight = document.querySelector('.pokeWeight');
-let pokeNumber = document.querySelector('.pokeNumber');
-
+let pokeHeight = document.querySelector('.pokeHeight');
 
 
 
@@ -109,6 +109,9 @@ let pokemonSprite;
 let pokemonType;
 // create a variable that will hold that pokemon weight
 let pokemonWeight;
+// Create a variable that will hold that pokemon's height
+let pokemonHeight;
+
 
 function showNumber() {
     pokeNumber.textContent = `National Pokédex #${pokemonNumber}`;
@@ -168,7 +171,12 @@ function showType(type) {
 
 // Function to display weight on page. Weight API is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
 function showWeight(){
-    pokeWeight.textContent = `${(pokemonWeight / 10).toFixed(1)} kilograms`; 
+    pokeWeight.textContent = `Weight: ${(pokemonWeight / 10).toFixed(1)} kilograms`; 
+}
+
+// Function to display height. Height data was in decimetres so converted to centimetres by multiplying.
+function showHeight(){
+    pokeHeight.textContent = `Height: ${pokemonHeight * 10} centimetres`;
 }
 
 // efa8e4
