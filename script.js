@@ -78,6 +78,8 @@ pokeSelector.getPokeData = (userChoice) => {
                     });
                     pokemonWeight = pokeData.weight;
                     showWeight();
+                    pokemonHeight = pokeData.height;
+                    showHeight();
                     })
                 // Used to catch errors if 2nd API fetch request fails.    
                     .catch ( (error) => {
