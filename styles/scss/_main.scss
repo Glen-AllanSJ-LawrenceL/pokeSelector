@@ -37,7 +37,7 @@ main {
         }
     }
 
-    .pokeInfo, .pokeName, .pokeWeight {
+    .pokeNumber, .pokeInfo, .pokeName, .pokeWeight {
         // border: 2px solid #ff165d;
         width: 50%;
         border-radius: 10px;
@@ -62,7 +62,7 @@ main {
         }
     }
 
-    .pokeName, .pokeWeight {
+    .pokeNumber, .pokeName, .pokeWeight {
         text-shadow: 1px 1px 0 #f08a5d;
     }
 

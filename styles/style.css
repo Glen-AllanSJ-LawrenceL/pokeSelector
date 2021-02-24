@@ -302,7 +302,7 @@ main {
   width: 100%;
 }
 
-.pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+.pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
   width: 50%;
   border-radius: 10px;
   padding: 20px;
@@ -313,24 +313,24 @@ main {
 }
 
 @media (max-width: 1000px) {
-  .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
     margin-bottom: 40px;
   }
 }
 
 @media (max-width: 700px) {
-  .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
     width: 80%;
   }
 }
 
 @media (max-width: 400px) {
-  .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
     width: 85%;
   }
 }
 
-.pokeData .pokeName, .pokeData .pokeWeight {
+.pokeData .pokeNumber, .pokeData .pokeName, .pokeData .pokeWeight {
   text-shadow: 1px 1px 0 #f08a5d;
 }
 

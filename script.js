@@ -23,7 +23,7 @@ let imageEl = document.querySelector('img');
 let pokeName = document.querySelector('.pokeName');
 let pokeInfo = document.querySelector('.pokeInfo');
 let pokeWeight = document.querySelector('.pokeWeight');
-
+let pokeNumber = document.querySelector('.pokeNumber');
 
 
 
@@ -69,6 +69,8 @@ pokeSelector.getPokeData = (userChoice) => {
                     console.log(pokeData);
                     pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
                         showImages();
+                        pokemonNumber = pokeData.id;
+                        showNumber();
                         pokemonName = pokeData.name;
                         showName();
                         pokeData.types.forEach((type) => {
@@ -98,15 +100,19 @@ pokeSelector.getPokeData = (userChoice) => {
         
 
 // CREATE FUNCTION FOR DISPLAY ****
+let pokemonNumber;
 // create a variable that will hold the pokemon name
 let pokemonName;
 //create a variable that will hold that pokemon sprite
 let pokemonSprite;
 //create a variable that will hold that pokemon description
 let pokemonType;
-
 // create a variable that will hold that pokemon weight
 let pokemonWeight;
+
+function showNumber() {
+    pokeNumber.textContent = `National Pokedex #${pokemonNumber}`;
+}
 
 function showImages() {
     imageEl.src = `${pokemonSprite}`;
