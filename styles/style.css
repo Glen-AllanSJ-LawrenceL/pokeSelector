@@ -302,7 +302,7 @@ main {
   width: 100%;
 }
 
-.pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+.pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
   width: 50%;
   border-radius: 10px;
   padding: 20px;
@@ -313,24 +313,24 @@ main {
 }
 
 @media (max-width: 1000px) {
-  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
     margin-bottom: 40px;
   }
 }
 
 @media (max-width: 700px) {
-  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
     width: 80%;
   }
 }
 
 @media (max-width: 400px) {
-  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight {
+  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
     width: 85%;
   }
 }
 
-.pokeData .pokeNumber, .pokeData .pokeName, .pokeData .pokeWeight {
+.pokeData .pokeNumber, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
   text-shadow: 1px 1px 0 #f08a5d;
 }
 
