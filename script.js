@@ -22,6 +22,11 @@ const typeInput = document.querySelector('option');
 let imageEl = document.querySelector('img');
 let pokeName = document.querySelector('.pokeName');
 let pokeInfo = document.querySelector('.pokeInfo');
+let pokeWeight = document.querySelector('.pokeWeight');
+let pokeNumber = document.querySelector('.pokeNumber');
+
+
+
 
 // getPokeData when user submits selection
 button.addEventListener('click', (event) => {
@@ -31,7 +36,7 @@ button.addEventListener('click', (event) => {
     // Method used to get sprite data from pokeAPI
 })
 
-pokeSelector.getPokeData = () => {
+pokeSelector.getPokeData = (userChoice) => {
     // Use the URL Constructor to specify the parameters we wish to include in our API endpoint. 
     // NEED URL Constructor with Vanilla JavaScript vs. jQuery which uses the ajax function.
     // Additional query parameters included to compensate for the default 20 results per page limit noramlly imposed by the API.
@@ -39,6 +44,7 @@ pokeSelector.getPokeData = () => {
     url.search = new URLSearchParams({
         offset: 0,
         limit: 898,
+        name: userChoice,
     })
 
     // Using the built-in fetch API to make a request to the PokeAPI endpoint
@@ -63,15 +69,26 @@ pokeSelector.getPokeData = () => {
                     console.log(pokeData);
                     pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
                         showImages();
+                        pokemonNumber = pokeData.id;
+                        showNumber();
                         pokemonName = pokeData.name;
                         showName();
                         pokeData.types.forEach((type) => {
                             showType(type.type.name);
-                        })
+                        });
+                        pokemonWeight = pokeData.weight;
+                        showWeight();
                     })
+                // Used to catch errors if 2nd API fetch request fails.    
+                .catch ( (error) => {
+                    alert('2nd fetch API request has failed', error);
+                });    
             // new fetch end
-            })
-            
+        })
+        // Used to catch errors if 1st API fetch request fails
+        .catch( (error) => {
+            alert('1st fetch API request has failed', error);
+        });     
             
 
             // Pass the data into the displayPhotos method
@@ -79,15 +96,23 @@ pokeSelector.getPokeData = () => {
             // galleryApp.displayPhotos(jsonResponse);
 
     
-        }
+}
+        
 
 // CREATE FUNCTION FOR DISPLAY ****
+let pokemonNumber;
 // create a variable that will hold the pokemon name
 let pokemonName;
 //create a variable that will hold that pokemon sprite
 let pokemonSprite;
 //create a variable that will hold that pokemon description
 let pokemonType;
+// create a variable that will hold that pokemon weight
+let pokemonWeight;
+
+function showNumber() {
+    pokeNumber.textContent = `National Pokedex #${pokemonNumber}`;
+}
 
 function showImages() {
     imageEl.src = `${pokemonSprite}`;
@@ -141,14 +166,29 @@ function showType(type) {
     // changing the pokeName background color based on the pokemon type
 }
 
+// Function to display weight on page. Weight API is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
+function showWeight(){
+    pokeWeight.textContent = `${(pokemonWeight / 10).toFixed(1)} kilograms`; 
+}
+
 // efa8e4
 // Function for obtaining user input from search
 pokeSelector.getUserChoice = () => {
-    document.querySelector('pokeSearch').addEventListener('search', (event) => {
+    pokeSearch.textContent = "";
+    const pokemonSearch = document.getElementById('#pokeSearch');
+    console.log(pokemonSearch);
+    pokemonSearch.addEventListener('keyUp', (event) => {
+        console.log(event);
         const userChoice = event.target.value;
+
+        pokeSelector.getPokeData(userChoice);
         console.log(userChoice);
+
+        showImages();
+        showName();
+        showType();
         })
-    }
+}
     
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){
@@ -203,7 +243,7 @@ pokeSelector.getUserChoice = () => {
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
     // pokeSelector.getPokeData();
-
+    // pokeSelector.getUserChoice();
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();
