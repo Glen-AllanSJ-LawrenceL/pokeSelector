@@ -422,11 +422,6 @@ form fieldset {
   border-color: #ff9a00;
 }
 
-.pokeSearch option, button option {
-  color: #f6f7d7;
-  background: #3ec1d3;
-}
-
 @media (max-width: 400px) {
   button {
     margin-top: 20px;
