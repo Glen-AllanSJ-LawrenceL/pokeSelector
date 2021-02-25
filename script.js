@@ -96,8 +96,6 @@ pokeSelector.getPokeData = (userChoice) => {
             // Pass the data into the displayPhotos method
             // AKA call the displayPhotos within getPhotos
             // galleryApp.displayPhotos(jsonResponse);
-
-    
 }
         
 
@@ -185,9 +183,9 @@ function showHeight(){
 // Function for obtaining user input from search
 pokeSelector.getUserChoice = () => {
     pokeSearch.textContent = "";
-    const pokemonSearch = document.getElementById('#pokeSearch');
+    const pokemonSearch = document.getElementById('pokeSearch');
     console.log(pokemonSearch);
-    pokemonSearch.addEventListener('input', (event) => {
+    pokemonSearch.addEventListener('keyup', (event) => {
         console.log(event.target.value);
         const userChoice = event.target.value;
 
@@ -252,8 +250,8 @@ pokeSelector.getUserChoice = () => {
 
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
-    // pokeSelector.getPokeData();
-    // pokeSelector.getUserChoice();
+    pokeSelector.getUserChoice();
+    pokeSelector.getPokeData();
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();
