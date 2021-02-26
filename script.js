@@ -27,7 +27,6 @@ let pokeWeight = document.querySelector('.pokeWeight');
 let pokeHeight = document.querySelector('.pokeHeight');
 
 
-
 // getPokeData when user submits selection
 button.addEventListener('click', (event) => {
     pokeInfo.innerHTML = "";
@@ -40,11 +39,11 @@ pokeSelector.getPokeData = (userChoice) => {
     // Use the URL Constructor to specify the parameters we wish to include in our API endpoint. 
     // NEED URL Constructor with Vanilla JavaScript vs. jQuery which uses the ajax function.
     // Additional query parameters included to compensate for the default 20 results per page limit noramlly imposed by the API.
-    const url = new URL(pokeSelector.apiUrl);
+    let url = new URL(pokeSelector.apiUrl);
     url.search = new URLSearchParams({
         offset: 0,
         limit: 898,
-        name: userChoice
+        // name: userChoice
     })
 
     // Using the built-in fetch API to make a request to the PokeAPI endpoint
@@ -54,7 +53,8 @@ pokeSelector.getPokeData = (userChoice) => {
     // for (let i = 0; i <=50; i++){
     //     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     //     promisesArray.push()
-    const randomPokemon = Math.floor(Math.random() * 898);
+    let randomPokemon;
+    // userChoice = 'charmander';
 
     fetch(url)
         .then((response) => {
@@ -62,6 +62,21 @@ pokeSelector.getPokeData = (userChoice) => {
         })
         .then((jsonResponse) => {
             // new fetch
+            // console.log(jsonResponse.results[5].name);
+            if (!userChoice ){
+                randomPokemon = Math.floor(Math.random() * 898);
+            } else {
+                for (let i = 0; i <= 898; i++) {
+                    if (jsonResponse.results[i].name === userChoice) {
+                        randomPokemon = i;
+                        console.log(i);
+                        break;
+                        // } 
+                    }
+            }
+            }
+            // randomPokemon = Math.floor(Math.random() * 898);
+            console.log(randomPokemon +'equals a random pokemon');
             fetch(jsonResponse.results[randomPokemon].url) 
                 .then((data) => {
                     return data.json();
@@ -81,7 +96,7 @@ pokeSelector.getPokeData = (userChoice) => {
                     pokemonHeight = pokeData.height;
                     showHeight();
                     })
-                // Used to catch errors if 2nd API fetch request fails.    
+                    // Used to catch errors if 2nd API fetch request fails.    
                     .catch ( (error) => {
                         alert('2nd fetch API request has failed', error);
                     });    
@@ -97,17 +112,19 @@ pokeSelector.getPokeData = (userChoice) => {
             // AKA call the displayPhotos within getPhotos
             // galleryApp.displayPhotos(jsonResponse);
 }
+
+
         
 
 // CREATE FUNCTION FOR DISPLAY ****
 let pokemonNumber;
-// create a variable that will hold the pokemon name
+// create a variable that will hold the pokemon's name
 let pokemonName;
-//create a variable that will hold that pokemon sprite
+//create a variable that will hold that pokemon's sprite
 let pokemonSprite;
-//create a variable that will hold that pokemon description
+//create a variable that will hold that pokemon's type
 let pokemonType;
-// create a variable that will hold that pokemon weight
+// create a variable that will hold that pokemon's weight
 let pokemonWeight;
 // Create a variable that will hold that pokemon's height
 let pokemonHeight;
@@ -185,12 +202,21 @@ pokeSelector.getUserChoice = () => {
     pokeSearch.textContent = "";
     const pokemonSearch = document.getElementById('pokeSearch');
     console.log(pokemonSearch);
-    pokemonSearch.addEventListener('keyup', (event) => {
-        console.log(event.target.value);
-        const userChoice = event.target.value;
+    pokemonSearch.addEventListener('keypress', (event) => {
+        if(event.key === 'Enter'){
+            event.preventDefault();
+            if (!event.target.value) {
+                alert('Please enter in a Pokemon!');
+            } else {
+                console.log(event.target.value);
+                const userChoice = event.target.value;
 
-        pokeSelector.getPokeData(userChoice);
-        console.log(userChoice);
+                pokeSelector.getPokeData(userChoice);
+                console.log(userChoice);
+            }
+            
+        }
+        
 
         // showImages();
         // showName();
