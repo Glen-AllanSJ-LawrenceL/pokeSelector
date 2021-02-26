@@ -62,26 +62,21 @@ pokeSelector.getPokeData = (userChoice) => {
         })
         .then((jsonResponse) => {
             // new fetch
-            // console.log(jsonResponse.results[5].name);
             if (!userChoice ){
                 randomPokemon = Math.floor(Math.random() * 898);
             } else {
                 for (let i = 0; i <= 898; i++) {
                     if (jsonResponse.results[i].name === userChoice) {
                         randomPokemon = i;
-                        console.log(i);
                         break;
-                        // } 
                     }
                 }
             }
             // randomPokemon = Math.floor(Math.random() * 898);
-            console.log(randomPokemon +'equals a random pokemon');
             fetch(jsonResponse.results[randomPokemon].url) 
                 .then((data) => {
                     return data.json();
                 }).then((pokeData) => {
-                    console.log(pokeData);
                     pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
                     pokemonNumber = pokeData.id;
                     pokemonName = pokeData.name;
@@ -99,17 +94,14 @@ pokeSelector.getPokeData = (userChoice) => {
                 });    
             // new fetch end
         })
-        // Used to catch errors if 1st API fetch request fails
+        // Used to catch errors if 1st API fetch request fails due to the user not typing in the FULL proper name for a Pokemon:
         .catch( (error) => {
-            alert('1st fetch API request has failed', error);
+            alert('That is not a full Pokemon name, please try again!', error);
         });     
             
-
-            // Pass the data into the displayPhotos method
-            // AKA call the displayPhotos within getPhotos
-            // galleryApp.displayPhotos(jsonResponse);
 }
 
+// Method used to call all of the important pokemon data from the API so that it can be displayed when the user types in the name of their desired pokemon.  
 pokeSelector.pokeInput = () => {
     showImages();
     showNumber();
@@ -199,73 +191,28 @@ function showHeight(){
 }
 
 // efa8e4
-// Function for obtaining user input from search
+// Function for obtaining user input from search input which then checks to see if the user entered in the proper name of a Pokemon. If Enter is pressed and the name is not of a Pokemon an alert will popup indicating that the user needs to enter the full proper name of a Pokemon to obtain a result:
 pokeSelector.getUserChoice = () => {
     const pokemonSearch = document.getElementById('pokeSearch');
-    console.log(pokemonSearch);
     pokemonSearch.addEventListener('keypress', (event) => {
         pokemonSearch.textContent = '';
         if (event.key === 'Enter') {
             event.preventDefault();
             if (!event.target.value) {
-                alert('Please enter in a Pokemon!');
+                alert('Please enter in a full Pokemon name!');
             } else {
-                console.log(event.target.value);
                 const userInput = event.target.value;
                 const userChoice = userInput.toLowerCase(); 
                 
                 pokeSelector.getPokeData(userChoice);
-                console.log(userChoice);
             }
         }
-        // showImages();
-        // showName();
-        // showType();
     })
 }
 
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
-    // jsonResponse.results.forEach(allPokemonInfo){
-    //     fetchNestedPokemonData(allPokemonInfo){
-    //         let nestedApiUrl = url.search;
-
-    //         fetch(nestedApiUrl)
-    //             .then(response => response.json())
-
-    //             .then((nestedPokemonData) => {
-    //                 console.log(nestedPokemonData);
-    //             })
-        //     }
-        // }    
-    // }    
 
 // Create a method () to make API calls when the user has provided an input which is their desired pokemon type. When the API call is successful, the application will display the result by appending or changing text content to the resulting HTML tag which is likely going to be a <p> and/or <h>.
-
-// pokeSelector.displaySprites = (dataFromApi) => {
-//     // Query the document and find the first ul
-//     const spriteImages = document.querySelector('img');
-
-//     // take the data from the API and iterate through it
-//     // for EACH object in the API we will:
-//     dataFromApi.forEach((datum) => {
-//         // Create list elements 
-//         const listElement = document.createElement('li');
-
-//         // Create image elements
-//         const image = document.createElement('img');
-//         // Add content for img alt and src attributes
-//         // This is where you source images and thier alt are going to live.
-//         image.src = datum.urls.regular;
-//         image.alt = datum.alt_description;
-
-//         // Append the image element to its parent li
-//         listElement.appendChild(image);
-
-
-//         // append the li to the ul
-//         ul.appendChild(listElement);
-//     })
-// }
 
 
 

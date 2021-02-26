@@ -312,15 +312,6 @@ main {
   letter-spacing: 0.2em;
 }
 
-<<<<<<< HEAD
-=======
-@media (max-width: 1000px) {
-  .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
-    margin-bottom: 40px;
-  }
-}
-
->>>>>>> ba5154f7578952f6a0f989a76ac52d3cb2372dec
 @media (max-width: 700px) {
   .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
     width: 80%;
