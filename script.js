@@ -144,6 +144,7 @@ function showName() {
 
 function showType(type) {
     const pokeType = document.createElement('p');
+    pokeInfo.innerHTML = "";
     pokeType.innerText = type;
     if (type === 'grass') {
         pokeType.style.backgroundColor = '#729d39';
@@ -209,7 +210,8 @@ pokeSelector.getUserChoice = () => {
                 alert('Please enter in a Pokemon!');
             } else {
                 console.log(event.target.value);
-                const userChoice = event.target.value;
+                const userInput = event.target.value;
+                const userChoice = userInput.toLowerCase(); 
 
                 pokeSelector.getPokeData(userChoice);
                 console.log(userChoice);
