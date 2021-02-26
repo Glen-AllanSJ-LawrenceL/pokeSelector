@@ -29,7 +29,7 @@ let pokeHeight = document.querySelector('.pokeHeight');
 
 // getPokeData when user submits selection
 button.addEventListener('click', (event) => {
-    pokeInfo.innerHTML = "";
+    // pokeInfo.innerHTML = "";
     event.preventDefault();
     pokeSelector.getPokeData();
     // Method used to get sprite data from pokeAPI
@@ -73,7 +73,7 @@ pokeSelector.getPokeData = (userChoice) => {
                         break;
                         // } 
                     }
-            }
+                }
             }
             // randomPokemon = Math.floor(Math.random() * 898);
             console.log(randomPokemon +'equals a random pokemon');
@@ -83,23 +83,20 @@ pokeSelector.getPokeData = (userChoice) => {
                 }).then((pokeData) => {
                     console.log(pokeData);
                     pokemonSprite = pokeData.sprites.other["official-artwork"].front_default;
-                    showImages();
                     pokemonNumber = pokeData.id;
-                    showNumber();
                     pokemonName = pokeData.name;
-                    showName();
+                    pokeInfo.innerHTML = "";
                     pokeData.types.forEach((type) => {
                         showType(type.type.name);
                     });
                     pokemonWeight = pokeData.weight;
-                    showWeight();
                     pokemonHeight = pokeData.height;
-                    showHeight();
+                    pokeSelector.pokeInput();
                     })
                     // Used to catch errors if 2nd API fetch request fails.    
-                    .catch ( (error) => {
-                        alert('2nd fetch API request has failed', error);
-                    });    
+                .catch ( (error) => {
+                    alert('2nd fetch API request has failed', error);
+                });    
             // new fetch end
         })
         // Used to catch errors if 1st API fetch request fails
@@ -113,8 +110,13 @@ pokeSelector.getPokeData = (userChoice) => {
             // galleryApp.displayPhotos(jsonResponse);
 }
 
-
-        
+pokeSelector.pokeInput = () => {
+    showImages();
+    showNumber();
+    showName();
+    showWeight();
+    showHeight();
+}
 
 // CREATE FUNCTION FOR DISPLAY ****
 let pokemonNumber;
@@ -127,7 +129,7 @@ let pokemonType;
 // create a variable that will hold that pokemon's weight
 let pokemonWeight;
 // Create a variable that will hold that pokemon's height
-let pokemonHeight;
+let pokemonHeight;        
 
 
 function showNumber() {
@@ -144,7 +146,6 @@ function showName() {
 
 function showType(type) {
     const pokeType = document.createElement('p');
-    pokeInfo.innerHTML = "";
     pokeType.innerText = type;
     if (type === 'grass') {
         pokeType.style.backgroundColor = '#729d39';
@@ -200,11 +201,11 @@ function showHeight(){
 // efa8e4
 // Function for obtaining user input from search
 pokeSelector.getUserChoice = () => {
-    pokeSearch.textContent = "";
     const pokemonSearch = document.getElementById('pokeSearch');
     console.log(pokemonSearch);
     pokemonSearch.addEventListener('keypress', (event) => {
-        if(event.key === 'Enter'){
+        pokemonSearch.textContent = '';
+        if (event.key === 'Enter') {
             event.preventDefault();
             if (!event.target.value) {
                 alert('Please enter in a Pokemon!');
@@ -212,20 +213,17 @@ pokeSelector.getUserChoice = () => {
                 console.log(event.target.value);
                 const userInput = event.target.value;
                 const userChoice = userInput.toLowerCase(); 
-
+                
                 pokeSelector.getPokeData(userChoice);
                 console.log(userChoice);
             }
-            
         }
-        
-
         // showImages();
         // showName();
         // showType();
-        })
+    })
 }
-    
+
     // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
     // jsonResponse.results.forEach(allPokemonInfo){
     //     fetchNestedPokemonData(allPokemonInfo){
@@ -279,7 +277,7 @@ pokeSelector.getUserChoice = () => {
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
     pokeSelector.getUserChoice();
-    pokeSelector.getPokeData();
+    // pokeSelector.getPokeData();
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();
