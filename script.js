@@ -87,16 +87,16 @@ pokeSelector.getPokeData = (userChoice) => {
                     pokemonHeight = pokeData.height;
                     pokeSelector.pokeInput();
                     })
-                    // Used to catch errors if 2nd API fetch request fails.    
+                // Used to catch errors if 2nd API fetch request fails.    
                 .catch ( (error) => {
                     alert('2nd fetch API request has failed', error);
                 });    
-            // new fetch end
+            // New fetch end
         })
         // Used to catch errors if 1st API fetch request fails due to the user not typing in the FULL proper name for a Pokemon.
         // This also has the effect of informing the user that they must type in a proper pokemon name otherwise they will not get a specific result.
         .catch( (error) => {
-            alert('That is not a full Pokemon name, please try again!', error);
+            alert('That is not a full Pokemon name, please enter one and try again!', error);
         });     
             
 }
@@ -191,7 +191,7 @@ function showHeight(){
 }
 
 
-// Function for obtaining user input from search input which then checks to see if the user entered in the proper name of a Pokemon. If Enter is pressed and the name is not of a Pokemon an alert will popup indicating that the user needs to enter the full proper name of a Pokemon to obtain a result:
+// Function for obtaining user input from search field which then checks to see if the user entered in the proper name of a Pokemon. If Enter is pressed and the field is completely empty, an alert will popup indicating that the user needs to enter the full proper name of a Pokemon to obtain a result:
 pokeSelector.getUserChoice = () => {
     const pokemonSearch = document.getElementById('pokeSearch');
     pokemonSearch.addEventListener('keypress', (event) => {
@@ -203,8 +203,9 @@ pokeSelector.getUserChoice = () => {
             } else {
                 const userInput = event.target.value;
                 const userChoice = userInput.toLowerCase(); 
-                
                 pokeSelector.getPokeData(userChoice);
+                // Clears the search field after user choice Pokemon is generated:
+                pokemonSearch.value = "";
             }
         }
     })
