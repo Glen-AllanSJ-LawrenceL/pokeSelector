@@ -20,7 +20,7 @@ const pokeSelector = {};
 // Obtain Pokemon data by calling the API and saving the relevant information.
 // - pokeapi.io is the API we will be using for this Pokemon selector.
 // - apikey is not required for data to be obtained as per documentation: https://pokeapi.co/docs/v2.
-pokeSelector.apiUrl = "https://pokeapi.co/api/v2/pokemon";
+pokeSelector.apiUrl = 'https://pokeapi.co/api/v2/pokemon';
 
 const button = document.querySelector('button');
 const typeInput = document.querySelector('option');
@@ -205,7 +205,7 @@ pokeSelector.getUserChoice = () => {
                 const userChoice = userInput.toLowerCase(); 
                 pokeSelector.getPokeData(userChoice);
                 // Clears the search field after user choice Pokemon is generated:
-                pokemonSearch.value = "";
+                pokemonSearch.value = '';
             }
         }
     })
