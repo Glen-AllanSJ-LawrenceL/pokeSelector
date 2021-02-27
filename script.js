@@ -1,14 +1,19 @@
 // Pseudo Code:
-// Create a Pokemon selector application where users selects or inputs their preferred Pokemon type.
-// Once selected, the code will take that input and save it into a variable. The application will then call the API data returning a Pokemon that fits with the user's selected type.
+// Basic MVP:
+// Create a Pokemon selector application where users select or input their preferred Pokemon type either by clicking a button or typing it into a search field.
+// Once selected, the code will take that input and save it into a variable. The application will then call the API data returning a Pokemon that fits with the user's selected type and return an image of the pokemon including basic data such as name, type, pokemon number.
 
 
-// Stretch Goals:
-// Create a filter so that Pokemon can be included or excluded based on generation and/or games (i.e. Generation: Red, Blue, Yellow). Might be possible through this endpoint: https://pokeapi.co/api/v2/generation/{id or name}/
+
+// Stretch Goals & Ideas for Additional Functionality in the Future:
+// Creating a filter so that Pokemon can be included or excluded based on generation and/or games (i.e. Generation: Red, Blue, Yellow). Might be possible through this endpoint: https://pokeapi.co/api/v2/generation/{id or name}/
+// Adding a drop down user selectible menu where the user can select their preferred pokemon type and receive a random pokemon with their desired typing.
 // The API will also be called to return other information on the Pokemon such as size, weight, evolutions etc.
+// - call the method for a random pokemon on page load to give the user an idea of how the user's desired pokemon will be displayed on the application.
+// add additional event listeners and create gallery functionality so that user can cycle or move to another pokemon with the resulting picture and data.
 
 
-// Create and app object (pokeSelector) for namespace
+// Create and app object (pokeSelector) for namespace:
 const pokeSelector = {};
 
 
@@ -27,41 +32,36 @@ let pokeWeight = document.querySelector('.pokeWeight');
 let pokeHeight = document.querySelector('.pokeHeight');
 
 
-// getPokeData when user submits selection
+// Event listener for random generate button:
 button.addEventListener('click', (event) => {
     // pokeInfo.innerHTML = "";
+    // Prevents form button from refreshing the page everytime it is clicked
     event.preventDefault();
+    // Calling data from pokeAPI so that it can be generated onto the page when 
     pokeSelector.getPokeData();
-    // Method used to get sprite data from pokeAPI
+    
 })
 
 pokeSelector.getPokeData = (userChoice) => {
     // Use the URL Constructor to specify the parameters we wish to include in our API endpoint. 
-    // NEED URL Constructor with Vanilla JavaScript vs. jQuery which uses the ajax function.
-    // Additional query parameters included to compensate for the default 20 results per page limit noramlly imposed by the API.
+    // Additional query parameters included to compensate for the default 20 results per page limit normally imposed by the API.
     let url = new URL(pokeSelector.apiUrl);
     url.search = new URLSearchParams({
         offset: 0,
         limit: 898,
-        // name: userChoice
     })
 
     // Using the built-in fetch API to make a request to the PokeAPI endpoint
     // This is used to obtain the API data and then parse it into JSON format so that it is useable for the application. 
-    
-    // const promisesArray = [];
-    // for (let i = 0; i <=50; i++){
-    //     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-    //     promisesArray.push()
     let randomPokemon;
-    // userChoice = 'charmander';
 
     fetch(url)
         .then((response) => {
             return response.json();
         })
         .then((jsonResponse) => {
-            // new fetch
+            // New fetch API call for nested pokemon data
+            // If statement used to determine if the user types in a ppokemon name. If userChoice evaluates as false then random generation of pokemon will be available. Else iterate through API data and return pokemon name result that matches userChoice.
             if (!userChoice ){
                 randomPokemon = Math.floor(Math.random() * 898);
             } else {
@@ -72,7 +72,6 @@ pokeSelector.getPokeData = (userChoice) => {
                     }
                 }
             }
-            // randomPokemon = Math.floor(Math.random() * 898);
             fetch(jsonResponse.results[randomPokemon].url) 
                 .then((data) => {
                     return data.json();
@@ -94,7 +93,8 @@ pokeSelector.getPokeData = (userChoice) => {
                 });    
             // new fetch end
         })
-        // Used to catch errors if 1st API fetch request fails due to the user not typing in the FULL proper name for a Pokemon:
+        // Used to catch errors if 1st API fetch request fails due to the user not typing in the FULL proper name for a Pokemon.
+        // This also has the effect of informing the user that they must type in a proper pokemon name otherwise they will not get a specific result.
         .catch( (error) => {
             alert('That is not a full Pokemon name, please try again!', error);
         });     
@@ -114,9 +114,9 @@ pokeSelector.pokeInput = () => {
 let pokemonNumber;
 // create a variable that will hold the pokemon's name
 let pokemonName;
-//create a variable that will hold that pokemon's sprite
+// create a variable that will hold that pokemon's sprite
 let pokemonSprite;
-//create a variable that will hold that pokemon's type
+// create a variable that will hold that pokemon's type
 let pokemonType;
 // create a variable that will hold that pokemon's weight
 let pokemonWeight;
@@ -180,17 +180,17 @@ function showType(type) {
     // changing the pokeName background color based on the pokemon type
 }
 
-// Function to display weight on page. Weight API is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
+// Function to display weight on page. Weight API data is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
 function showWeight(){
     pokeWeight.textContent = `Weight: ${(pokemonWeight / 10).toFixed(1)} kilograms`; 
 }
 
-// Function to display height. Height data was in decimetres so converted to centimetres by multiplying.
+// Function to display height. Height data was in decimetres so converted to centimetres by multiplying by 10.
 function showHeight(){
     pokeHeight.textContent = `Height: ${pokemonHeight * 10} centimetres`;
 }
 
-// efa8e4
+
 // Function for obtaining user input from search input which then checks to see if the user entered in the proper name of a Pokemon. If Enter is pressed and the name is not of a Pokemon an alert will popup indicating that the user needs to enter the full proper name of a Pokemon to obtain a result:
 pokeSelector.getUserChoice = () => {
     const pokemonSearch = document.getElementById('pokeSearch');
@@ -208,18 +208,7 @@ pokeSelector.getUserChoice = () => {
             }
         }
     })
-}
-
-    // I found out through research and in the documentation that the data which is required for our application is nested and requires an additional fetch request to access the API data needed. This is why I need to use a ForEach method to go through all of the pokemon in the array and passing them to a new function:    
-
-// Create a method () to make API calls when the user has provided an input which is their desired pokemon type. When the API call is successful, the application will display the result by appending or changing text content to the resulting HTML tag which is likely going to be a <p> and/or <h>.
-
-
-
-
-
-// - call the above method for a random pokemon to be displayed to give the user an idea of how the user's desired pokemon will be displayed 
-// add event listeners for gallery portion so that user can cycle or move to another pokemon with the resulting picture and data.
+}  
 
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
