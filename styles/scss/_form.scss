@@ -41,6 +41,7 @@ button {
 
    @include mobileMQ {
       margin-top: 20px;
+      margin-bottom: 20px;
    }
 
    &:hover {

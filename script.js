@@ -34,10 +34,9 @@ let pokeHeight = document.querySelector('.pokeHeight');
 
 // Event listener for random generate button:
 button.addEventListener('click', (event) => {
-    // pokeInfo.innerHTML = "";
-    // Prevents form button from refreshing the page everytime it is clicked
+    // Prevents form button from refreshing the page everytime it is clicked.
     event.preventDefault();
-    // Calling data from pokeAPI so that it can be generated onto the page when 
+    // Calling data from pokeAPI so that it can be generated onto the page when user clicks generate button.
     pokeSelector.getPokeData();
     
 })
@@ -51,7 +50,7 @@ pokeSelector.getPokeData = (userChoice) => {
         limit: 898,
     })
 
-    // Using the built-in fetch API to make a request to the PokeAPI endpoint
+    // Using the built-in fetch API to make a request to the PokeAPI endpoint.
     // This is used to obtain the API data and then parse it into JSON format so that it is useable for the application. 
     let randomPokemon;
 
@@ -177,7 +176,7 @@ function showType(type) {
         pokeType.style.backgroundColor = '#fca3cc';
     }
     pokeInfo.appendChild(pokeType);
-    // changing the pokeName background color based on the pokemon type
+    // changing the pokeName background color based on the pokemon type.
 }
 
 // Function to display weight on page. Weight API data is in Hectograms (Hg) so divided by 10 as 1 kg = 10 Hg and fixed to 1 decimal place.
@@ -214,7 +213,6 @@ pokeSelector.getUserChoice = () => {
 // Initialization method for pokeSelector application
 pokeSelector.init = () => {
     pokeSelector.getUserChoice();
-    // pokeSelector.getPokeData();
 }
 //Call the init method to start the app when page loads:
 pokeSelector.init();

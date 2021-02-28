@@ -438,6 +438,7 @@ form fieldset {
 @media (max-width: 400px) {
   button {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
