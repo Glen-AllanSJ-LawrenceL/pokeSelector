@@ -285,7 +285,8 @@ main {
   width: 220px;
   height: 220px;
   border-radius: 10px;
-  margin: 0 0 20px;
+  margin: 10px 0 20px;
+  overflow: hidden;
   -webkit-transition: 0.7s cubic-bezier(0.47, 0.73, 0.53, 1.46);
   transition: 0.7s cubic-bezier(0.47, 0.73, 0.53, 1.46);
 }
@@ -300,14 +301,32 @@ main {
 .pokeData .pokeSprite img {
   display: block;
   width: 100%;
+  -webkit-transition: 0.7s cubic-bezier(0.47, 0.73, 0.53, 1.46);
+  transition: 0.7s cubic-bezier(0.47, 0.73, 0.53, 1.46);
+}
+
+.pokeData .pokeSprite img:hover {
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
+}
+
+.pokeData .pokeName {
+  width: 200px;
+  font-size: 2.2rem;
+  padding: 10px;
+  font-weight: 700;
+  text-shadow: 1.5px 1.5px 0 #ff9a00;
+}
+
+.pokeData .pokeNumber, .pokeData .pokeHeight, .pokeData .pokeWeight {
+  padding: 10px;
+  font-weight: 400;
 }
 
 .pokeData .pokeNumber, .pokeData .pokeInfo, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
-  width: 50%;
+  width: 40%;
   border-radius: 10px;
-  padding: 20px;
   text-align: center;
-  font-weight: 700;
   text-transform: capitalize;
   letter-spacing: 0.2em;
 }
@@ -324,10 +343,6 @@ main {
   }
 }
 
-.pokeData .pokeNumber, .pokeData .pokeName, .pokeData .pokeWeight, .pokeData .pokeHeight {
-  text-shadow: 1px 1px 0 #f08a5d;
-}
-
 .pokeData .pokeInfo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -336,6 +351,7 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   text-shadow: 1px 1px 0 #000;
+  margin: 20px 0;
 }
 
 .pokeData .pokeInfo p {
