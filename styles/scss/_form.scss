@@ -1,11 +1,9 @@
 form {
    margin: 40px auto 20px;
-   // padding-right: 120px;
 
    fieldset {
       display: flex;
       justify-content: center;
-      padding-right: 10px;
 
       @include mobileMQ {
          flex-direction: column;
@@ -16,6 +14,10 @@ form {
 
 .pokeSearch {
    width: 200px;
+
+   @include mobileMQ {
+      text-align: center;
+   }
 }
 
 .pokeSearch, button {
@@ -30,16 +32,11 @@ form {
    &:focus, &:hover {
       border-color: #ff9a00;
    }
-
-   // option {
-   //    color: #f6f7d7;
-   //    background: #3ec1d3;
-   // }
-
 }
 button {
 
    @include mobileMQ {
+      width: 200px;
       margin-top: 20px;
       margin-bottom: 20px;
    }

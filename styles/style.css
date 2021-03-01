@@ -239,7 +239,7 @@ h1 {
   font-size: 10vw;
   font-family: 'Cinzel', serif;
   width: 45%;
-  margin: 20px auto 20px;
+  margin: 30px auto 20px;
   text-indent: -18%;
   color: #ff9a00;
   text-shadow: -2px 2px 1px #ff165d, -4px 4px 1px #3ec1d3, -6px 6px 1px #007965;
@@ -251,6 +251,20 @@ h1 {
 @media (min-width: 1200px) {
   h1 {
     font-size: 12rem;
+  }
+}
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 12vw;
+    text-indent: -30%;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 13vw;
+    text-indent: -40%;
   }
 }
 
@@ -294,8 +308,6 @@ main {
 .pokeData .pokeSprite:hover {
   -webkit-transform: scale(1.08);
           transform: scale(1.08);
-  -webkit-box-shadow: 0 3px 2px rgba(0, 0, 0, 0.034), 0 6.5px 5px rgba(0, 0, 0, 0.048), 0 12px 10px rgba(0, 0, 0, 0.06), 0 22px 18px rgba(0, 0, 0, 0.072), 0 42px 33px rgba(0, 0, 0, 0.086);
-          box-shadow: 0 3px 2px rgba(0, 0, 0, 0.034), 0 6.5px 5px rgba(0, 0, 0, 0.048), 0 12px 10px rgba(0, 0, 0, 0.06), 0 22px 18px rgba(0, 0, 0, 0.072), 0 42px 33px rgba(0, 0, 0, 0.086);
 }
 
 .pokeData .pokeSprite img {
@@ -308,6 +320,8 @@ main {
 .pokeData .pokeSprite img:hover {
   -webkit-transform: scale(1.08);
           transform: scale(1.08);
+  -webkit-filter: drop-shadow(9px 9px 1px rgba(0, 0, 0, 0.086));
+          filter: drop-shadow(9px 9px 1px rgba(0, 0, 0, 0.086));
 }
 
 .pokeData .pokeName {
@@ -401,7 +415,6 @@ form fieldset {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-right: 10px;
 }
 
 @media (max-width: 400px) {
@@ -418,6 +431,12 @@ form fieldset {
 
 .pokeSearch {
   width: 200px;
+}
+
+@media (max-width: 400px) {
+  .pokeSearch {
+    text-align: center;
+  }
 }
 
 .pokeSearch, button {
@@ -437,6 +456,7 @@ form fieldset {
 
 @media (max-width: 400px) {
   button {
+    width: 200px;
     margin-top: 20px;
     margin-bottom: 20px;
   }

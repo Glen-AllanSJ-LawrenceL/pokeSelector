@@ -4,10 +4,9 @@
 // Once selected, the code will take that input and save it into a variable. The application will then call the API data returning a Pokemon that fits with the user's selected type and return an image of the pokemon including basic data such as name, type, pokemon number.
 
 
-
 // Stretch Goals & Ideas for Additional Functionality in the Future:
 // Creating a filter so that Pokemon can be included or excluded based on generation and/or games (i.e. Generation: Red, Blue, Yellow). Might be possible through this endpoint: https://pokeapi.co/api/v2/generation/{id or name}/
-// Adding a drop down user selectible menu where the user can select their preferred pokemon type and receive a random pokemon with their desired typing.
+// Adding a drop down user selectable menu where the user can select their preferred pokemon type and receive a random pokemon with their desired typing.
 // The API will also be called to return other information on the Pokemon such as size, weight, evolutions etc.
 // - call the method for a random pokemon on page load to give the user an idea of how the user's desired pokemon will be displayed on the application.
 // add additional event listeners and create gallery functionality so that user can cycle or move to another pokemon with the resulting picture and data.
@@ -34,7 +33,7 @@ let pokeHeight = document.querySelector('.pokeHeight');
 
 // Event listener for random generate button:
 button.addEventListener('click', (event) => {
-    // Prevents form button from refreshing the page everytime it is clicked.
+    // Prevents form button from refreshing the page every time it is clicked.
     event.preventDefault();
     // Calling data from pokeAPI so that it can be generated onto the page when user clicks generate button.
     pokeSelector.getPokeData();
@@ -61,7 +60,7 @@ pokeSelector.getPokeData = (userChoice) => {
         .then((jsonResponse) => {
             // New fetch API call for nested pokemon data
             // If statement used to determine if the user types in a ppokemon name. If userChoice evaluates as false then random generation of pokemon will be available. Else iterate through API data and return pokemon name result that matches userChoice.
-            if (!userChoice ){
+            if (!userChoice){
                 randomPokemon = Math.floor(Math.random() * 898);
             } else {
                 for (let i = 0; i <= 898; i++) {
