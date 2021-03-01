@@ -369,6 +369,7 @@ main {
 }
 
 .pokeData .pokeInfo p {
+  font-weight: 700;
   margin: 0 10px;
   padding: 5px 10px 5px 12px;
   border-radius: 10px;
