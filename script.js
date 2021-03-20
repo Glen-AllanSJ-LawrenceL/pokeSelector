@@ -86,16 +86,25 @@ pokeSelector.getPokeData = (userChoice) => {
                     pokeSelector.pokeInput();
                     })
                 // Used to catch errors if 2nd API fetch request fails.    
-                .catch ( (error) => {
-                    alert('2nd fetch API request has failed', error);
-                });    
+                .catch ( (error) => swal.fire({
+                    // alert('2nd fetch API request has failed', error);
+                    title: "Error",
+                    icon: "error",
+                    text: "2nd fetch API request has failed! Please try again later!"
+                    })
+                );    
             // New fetch end
         })
         // Used to catch errors if 1st API fetch request fails due to the user not typing in the FULL proper name for a Pokemon.
         // This also has the effect of informing the user that they must type in a proper pokemon name otherwise they will not get a specific result.
-        .catch( (error) => {
-            alert('That is not a full Pokemon name, please enter one and try again!', error);
-        });     
+        .catch( (error) => swal.fire({
+            // alert('That is not a full Pokemon name, please enter one and try again!', error);
+            title: "Pokemon not found!",
+            icon: "error",
+            text: "That is not a full pokemon name, please enter one and try again!",
+            timer: 4500,
+            })
+        );     
             
 }
 
