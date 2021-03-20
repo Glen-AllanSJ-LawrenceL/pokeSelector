@@ -382,13 +382,17 @@ main {
 }
 
 footer {
-  height: 40px;
+  height: 60px;
   color: #f6f7d7;
   background-color: #007965;
   font-size: 1.6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -397,12 +401,20 @@ footer {
           align-items: center;
 }
 
+footer p {
+  margin: 5px 0px;
+}
+
 footer a {
   text-decoration: none;
 }
 
 footer a:visited {
   color: #f6f7d7;
+}
+
+footer a:hover, footer a:focus {
+  color: #FF00FF;
 }
 
 form {

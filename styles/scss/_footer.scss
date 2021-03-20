@@ -1,16 +1,25 @@
 footer {
-   height: 40px;
+   height: 60px;
    color: #f6f7d7;
    background-color: #007965;
    font-size: 1.6rem;
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
+
+   p {
+      margin: 5px 0px;
+   }
 
    a {
       text-decoration: none;
       &:visited {
          color: #f6f7d7;
+      }
+      &:hover,
+      &:focus {
+         color: #FF00FF;
       }
    }
 }
