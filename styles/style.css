@@ -401,6 +401,12 @@ footer {
           align-items: center;
 }
 
+@media (max-width: 400px) {
+  footer {
+    font-size: 1.2rem;
+  }
+}
+
 footer p {
   margin: 5px 0px;
 }
