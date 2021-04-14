@@ -399,6 +399,10 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 @media (max-width: 400px) {
@@ -500,6 +504,7 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #252525;
   background-color: #f6f7d7;
+  margin-bottom: 80px;
 }
 
 .wrapper {
